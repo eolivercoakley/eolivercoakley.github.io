@@ -40,10 +40,9 @@ stackExchangeControllers.controller('HomeController', ['$scope', '$routeParams',
 }]);
 
 stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
-  	
+  function($scope, $routeParams, $http) {  	
     
-	$scope.stackExchangeLogin = function(){
+	(function(){
         SE.init({
             // Parameters obtained by registering an app, these are specific to the SE
             // documentation site
@@ -74,7 +73,7 @@ stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams'
                 networkUsers: true
             });
         });
-	}();
+	})();
 
 
 }]);
