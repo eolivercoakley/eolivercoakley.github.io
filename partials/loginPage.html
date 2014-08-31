@@ -1,3 +1,8 @@
 Login Page:
 
-
+<table>
+	<br><br>Login Info:
+	<tr ng-repeat="(key, value) in $scope.loginCredentials">
+	  <td> {{key}} </td> <td> {{ value }} </td>
+	</tr>
+</table>

@@ -66,12 +66,12 @@ stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams'
             // 'click blessing'
             SE.authenticate({
                 success: function(data) {
-                    alert(
+                    /*alert(
                         'User Authorized with account id = ' +
                         data.networkUsers[0].account_id + ', got access token = ' +
                         data.accessToken
-                    );
-                    console.error(data);
+                    );*/
+                    $scope.loginCredentials = data;
                 },
                 error: function(data) {
                     alert('An error occurred:\n' + data.errorName + '\n' + data.errorMessage);
@@ -79,7 +79,7 @@ stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams'
                 networkUsers: true
             });
         });
-	};
+	}();
 
 
 }]);
