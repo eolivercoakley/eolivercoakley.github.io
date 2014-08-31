@@ -16,7 +16,7 @@ window.SE = function(e) {
             w = d.substring(0, d.length - 1),
             u = (d + "//" + window.location.host).toLowerCase();
         if (c = t(e, "key"), i = r, a = o, 0 !== a.toLowerCase().indexOf(u)) throw "channelUrl must be under the current domain";
-        s = h + "/oauth/dialog?redirect_uri=" + h + "/oauth/login_success?assisted=" + r + "&protocol=" + w + "&proxy=" + a, setTimeout(function() {
+        s = h + "/oauth/dialog?redirect_uri=" + l(h + "/oauth/login_success?assisted=" + r + "&protocol=" + w + "&proxy=" + a), setTimeout(function() {
             n({
                 "version": "12332"
             })
@@ -34,7 +34,7 @@ window.SE = function(e) {
                 "networkUsers": a.items
             }), void 0)
         }; window[s] || w.getElementById(s);) s = "sec" + u++;
-        window[s] = d, a += "?pagesize=100&access_token=" + t + "&key=" + c + "&callback=" + s, i = w.createElement("script"), i.type = "text/javascript", i.src = a, i.id = s, w.getElementsByTagName("head")[0].appendChild(i)
+        window[s] = d, a += "?pagesize=100&access_token=" + l(t) + "&key=" + l(c) + "&callback=" + l(s), i = w.createElement("script"), i.type = "text/javascript", i.src = a, i.id = s, w.getElementsByTagName("head")[0].appendChild(i)
     }
 
     function n(e) {
@@ -46,7 +46,7 @@ window.SE = function(e) {
             x = s + "&client_id=" + i + "&state=" + k,
             y = e.error;
         if (f && "[object Array]" !== Object.prototype.toString.call(f)) throw "scope must be an Array";
-        f && (v = f.join(" ")), v.length > 0 && (x += "&scope=" + v), c = function(t) {
+        f && (v = f.join(" ")), v.length > 0 && (x += "&scope=" + l(v)), c = function(t) {
             if (t.origin === h && t.source === a) {
                 var n, i, s, d, w = t.data.substring(1).split("&"),
                     l = {};

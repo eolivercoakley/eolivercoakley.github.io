@@ -16,8 +16,24 @@
         // For simplicity, we're using jQuery for some things
          // However, the library has no jQuery dependency
         $(function() {
+            // Initialize library
+            SE.init({
+                // Parameters obtained by registering an app, these are specific to the SE
+                // documentation site
+                clientId: 3523,
+                key: 'C8mLfFHVyj1TGEfdDQTEYw((',
+                // Used for cross domain communication, it will be validated
+                channelUrl: 'http://eolivercoakley.github.io',
+                // Called when all initialization is finished
+                complete: function(data) {
+                    $('#login-button')
+                        .removeAttr('disabled')
+                        .text('Login');
+                }
+            });
             // Attach click handler to login button
-            $('#login-button').click(function() {     
+            $('#login-button').click(function() {
+            	console.error("bacon!");
                 // Make the authentication call, note that being in an onclick handler
                 // is important; most browsers will hide windows opened without a
                 // 'click blessing'
@@ -35,7 +51,6 @@
                     },
                     networkUsers: true
                 });
-                location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";
             });
         });
     </script>
@@ -60,7 +75,9 @@
     <br>
     <br>
     <br>
+    <!--a href="https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io"-->
         <button id="login-button">Login Button</button>
+    <!--/a-->
     <div ng-view></div>
 </body>
 
