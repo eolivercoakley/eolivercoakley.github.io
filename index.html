@@ -11,7 +11,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
-    <script type='text/javascript' src='https://api.stackexchange.com/js/2.0/all.js'></script>
+    <script src='js/stackExchangeApi.js'></script>
     <script type='text/javascript'>
         // For simplicity, we're using jQuery for some things
          // However, the library has no jQuery dependency
@@ -23,7 +23,7 @@
                 clientId: 3523,
                 key: 'C8mLfFHVyj1TGEfdDQTEYw((',
                 // Used for cross domain communication, it will be validated
-                channelUrl: 'eolivercoakley.github.io',
+                channelUrl: 'http://eolivercoakley.github.io',
                 // Called when all initialization is finished
                 complete: function(data) {
                     $('#login-button')
