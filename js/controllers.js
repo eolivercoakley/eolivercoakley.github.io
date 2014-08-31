@@ -67,6 +67,7 @@ stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams'
             SE.authenticate({
                 success: function(data) {
                     $scope.loginCredentials = data;
+                    $scope.$apply();
                     console.error($scope.loginCredentials);
                 },
                 error: function(data) {
