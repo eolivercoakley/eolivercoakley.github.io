@@ -26,13 +26,14 @@
                 channelUrl: 'http://eolivercoakley.github.io',
                 // Called when all initialization is finished
                 complete: function(data) {
-                    $('#login-button2')
+                    $('#login-button')
                         .removeAttr('disabled')
                         .text('Login');
                 }
             });
             // Attach click handler to login button
-            $('#login-button').click(function() {
+            $('#login-button2').click(function() {
+            	console.error("bacon!");
                 // Make the authentication call, note that being in an onclick handler
                 // is important; most browsers will hide windows opened without a
                 // 'click blessing'
@@ -75,7 +76,7 @@
     <br>
     <br>
     <a href="https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io">
-        <button id="login-button">Login Button</button>
+        <button id="login-button2">Login Button</button>
     </a>
     <div ng-view></div>
 </body>
