@@ -42,8 +42,8 @@ stackExchangeControllers.controller('HomeController', ['$scope', '$routeParams',
 stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {  	
     
-	(function(){
-        SE.init({
+	(function (){
+		SE.init({
             // Parameters obtained by registering an app, these are specific to the SE
             // documentation site
             clientId: 3523,
@@ -57,8 +57,10 @@ stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams'
                     .text('Login');
             }
         });
-        // Attach click handler to login button
-        $('#login-button').click(function() {
+	})();
+    
+	$scope.stackExchangeLogin = function(){
+
             // Make the authentication call, note that being in an onclick handler
             // is important; most browsers will hide windows opened without a
             // 'click blessing'
@@ -72,8 +74,7 @@ stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams'
                 },
                 networkUsers: true
             });
-        });
-	})();
+	};
 
 
 }]);
