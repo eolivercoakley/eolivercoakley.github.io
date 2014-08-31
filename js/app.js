@@ -23,7 +23,6 @@ stackExchangeApp.config(['$routeProvider',
 				controller: 'HomeController'
 			}).
 			otherwise({
-				redirectTo: '/login',
-				controller: 'LoginController'
+				redirectTo: '/login'
 			});
 }]);

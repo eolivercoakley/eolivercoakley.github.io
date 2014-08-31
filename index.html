@@ -12,48 +12,6 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src='js/stackExchangeApi.js'></script>
-    <script type='text/javascript'>
-        // For simplicity, we're using jQuery for some things
-         // However, the library has no jQuery dependency
-        $(function() {
-            // Initialize library
-            SE.init({
-                // Parameters obtained by registering an app, these are specific to the SE
-                // documentation site
-                clientId: 3523,
-                key: 'C8mLfFHVyj1TGEfdDQTEYw((',
-                // Used for cross domain communication, it will be validated
-                channelUrl: 'http://eolivercoakley.github.io',
-                // Called when all initialization is finished
-                complete: function(data) {
-                    $('#login-button')
-                        .removeAttr('disabled')
-                        .text('Login');
-                }
-            });
-            // Attach click handler to login button
-            $('#login-button').click(function() {
-            	console.error("bacon!");
-                // Make the authentication call, note that being in an onclick handler
-                // is important; most browsers will hide windows opened without a
-                // 'click blessing'
-                SE.authenticate({
-                    success: function(data) {
-                        alert(
-                            'User Authorized with account id = ' +
-                            data.networkUsers[0].account_id + ', got access token = ' +
-                            data.accessToken
-                        );
-                        console.error(data);
-                    },
-                    error: function(data) {
-                        alert('An error occurred:\n' + data.errorName + '\n' + data.errorMessage);
-                    },
-                    networkUsers: true
-                });
-            });
-        });
-    </script>
 </head>
 
 <body ng-controller="LoginController">
@@ -76,7 +34,7 @@
     <br>
     <br>
     <!--a href="https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io"-->
-        <button id="login-button">Login Button</button>
+        <button id="login-button" ng-click="stackExchangeLogin()">Login Button</button>
     <!--/a-->
     <div ng-view></div>
 </body>

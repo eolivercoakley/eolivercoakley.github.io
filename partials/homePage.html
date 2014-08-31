@@ -1,1 +1,39 @@
-Homepage
+<button id="load_login" ng-click="getUserInfo()">Load User Info</button>
+<button id="load_badges" ng-click="getBadgesInfo()">Load Badges</button>
+<button id="load_timeline" ng-click="getTimelineInfo()">Load Timeline</button>
+<button id="load_favorites" ng-click="getFavorites()">Load Favorites</button>
+<button id="load_tag_cloud" ng-click="getTagCloudInfo()">Load Tag Cloud</button>
+<table>
+	<br><br>Basic User Info:
+	<tr ng-repeat="(key, value) in loginInfo">
+	  <td> {{key}} </td> <td> {{ value }} </td>
+	</tr>
+</table>
+
+<table>
+	<br><br>Badges Info:
+	<tr ng-repeat="(key, value) in badgesInfo">
+	  <td> {{key}} </td> <td> {{ value }} </td>
+	</tr>
+</table>
+
+<table>
+	<br><br>Timeline Info:
+	<tr ng-repeat="(key, value) in timelineInfo">
+	  <td> {{key}} </td> <td> {{ value }} </td>
+	</tr>
+</table>
+
+<table>
+	<br><br>Favorites Info:
+	<tr ng-repeat="(key, value) in favoritesInfo">
+	  <td> {{key}} </td> <td> {{ value }} </td>
+	</tr>
+</table>
+
+<table>
+	<br><br>Tag Cloud Info:
+	<tr ng-repeat="(key, value) in tagCloudInfo">
+	  <td> {{key}} </td> <td> {{ value }} </td>
+	</tr>
+</table>
