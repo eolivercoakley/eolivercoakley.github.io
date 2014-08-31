@@ -12,8 +12,6 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     
-    <script type='text/javascript' src='https://api.stackexchange.com/js/2.0/all.js'></script>
-    
     
 <script type='text/javascript'>
 SE.init({
@@ -26,8 +24,9 @@ SE.init({
             .text('Login'); 
     }
 });
+</script>
 
-
+<script type='text/javascript'>
 // Attach click handler to login button
 $('#login-button').click(function() {
 
@@ -51,6 +50,9 @@ $('#login-button').click(function() {
 });
 </script>
 
+
+<script type='text/javascript' src='https://api.stackexchange.com/js/2.0/all.js'></script>
+    
 
 </head>
 <body ng-controller="LoginController">
