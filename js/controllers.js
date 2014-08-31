@@ -72,6 +72,7 @@ stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams'
                         data.accessToken
                     );*/
                     $scope.loginCredentials = data;
+                    console.error($scope.loginCredentials, data);
                 },
                 error: function(data) {
                     alert('An error occurred:\n' + data.errorName + '\n' + data.errorMessage);
