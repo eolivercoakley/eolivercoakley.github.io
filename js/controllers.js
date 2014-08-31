@@ -60,19 +60,13 @@ stackExchangeControllers.controller('LoginController', ['$scope', '$routeParams'
         });
         // Attach click handler to login button
         $('#login-button').click(function() {
-        	console.error("bacon!");
             // Make the authentication call, note that being in an onclick handler
             // is important; most browsers will hide windows opened without a
             // 'click blessing'
             SE.authenticate({
                 success: function(data) {
-                    /*alert(
-                        'User Authorized with account id = ' +
-                        data.networkUsers[0].account_id + ', got access token = ' +
-                        data.accessToken
-                    );*/
                     $scope.loginCredentials = data;
-                    console.error($scope.loginCredentials, data);
+                    console.error($scope.loginCredentials);
                 },
                 error: function(data) {
                     alert('An error occurred:\n' + data.errorName + '\n' + data.errorMessage);
