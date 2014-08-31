@@ -15,27 +15,18 @@
     <script type='text/javascript' src='https://api.stackexchange.com/js/2.0/all.js'></script>
     
     
-    
-
 <script type='text/javascript'>
-// For simplicity, we're using jQuery for some things
-//   However, the library has no jQuery dependency
-$(function(){
-// Initialize library
-SE.init({ 
-    // Parameters obtained by registering an app, these are specific to the SE
-    //   documentation site
-    clientId: 3523, 
-    key: 'C8mLfFHVyj1TGEfdDQTEYw((', 
-    // Used for cross domain communication, it will be validated
-    channelUrl: 'eolivercoakley.github.io/blank',
-    // Called when all initialization is finished
+SE.init({
+    clientId: 3523,
+    key: 'C8mLfFHVyj1TGEfdDQTEYw((',
+    channelUrl: 'http://eolivercoakley.github.io/blank',
     complete: function(data) { 
         $('#login-button')
             .removeAttr('disabled')
             .text('Login'); 
     }
 });
+
 
 // Attach click handler to login button
 $('#login-button').click(function() {
@@ -57,7 +48,6 @@ $('#login-button').click(function() {
         },
         networkUsers: true
     });
-});
 });
 </script>
 
