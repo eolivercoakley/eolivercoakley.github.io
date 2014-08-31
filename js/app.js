@@ -8,7 +8,6 @@ stackExchangeApp.config(['$routeProvider',
 		$routeProvider.
 			when('/login', {
 				templateUrl: 'partials/loginPage.html',
-				controller: 'LoginController'
 			}).
 			when('/question', {
 				templateUrl: 'partials/questionPage.html',
