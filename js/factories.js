@@ -48,6 +48,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
 		            networkUsers: true
 		        });
         	}
+        	console.error("End of the day, this is the cache object: ", authentication_cache_object);
         	return authentication_cache_object;
         };
         
@@ -89,6 +90,7 @@ myApp.factory('allUserData', ['$http',  function($http) {
 				return data;
 			});	
 		}
+		console.error("End of the day, this is the cache object: ", promiseData);
 		return promiseData;
 	}
 
