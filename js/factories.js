@@ -35,6 +35,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
         };
         
         function SEauthentication(authentication_cache_object){
+        	console.error("authobj",authentication_cache_object);
         	if(!authentication_cache_object){
         		authentication_cache_object = SE.authenticate({
 		            success: function(data) {
