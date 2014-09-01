@@ -7,8 +7,9 @@ myApp.controller('GlobalController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {  	
 }]);
 
-myApp.controller('LoginController', ['$scope', '$routeParams', '$http',
+myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$routeParams', '$http',
   function(userLoginAuthentication, $scope, $routeParams, $http) {  	
+  	console.error("In the login Controller");
 	$scope.userLoginAuthentication = userLoginAuthentication;
 	console.error(userLoginAuthentication);
     
@@ -22,6 +23,7 @@ myApp.controller('LoginController', ['$scope', '$routeParams', '$http',
 
 myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$http',
   function(allUserData, $scope, $routeParams, $http) {  	
+  		console.error("Home Controller");
   	  	$scope.allUserData = allUserData;
   	  	
   	  	//Load all data into respective widgets
@@ -53,7 +55,6 @@ myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$h
   	  	
   	  	//Closure to load all data into their respective widgets
   	  	for(var i in userDataToLoad){
-  	  		//console.error(userDataToLoad[i]);
   	  		(function(iter){
 		  	  	allUserData[userDataToLoad[iter].functionName]().success(
 		  			(function(data){
