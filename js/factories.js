@@ -10,47 +10,13 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
 	
 	var authentication_cache;
 		
-	/*(function (){
-		SE.init({
-            // Parameters obtained by registering an app, these are specific to the SE
-            // documentation site
-            clientId: 3523,
-            key: 'C8mLfFHVyj1TGEfdDQTEYw((',
-            // Used for cross domain communication, it will be validated
-            channelUrl: 'http://eolivercoakley.github.io',
-            // Called when all initialization is finished
-            complete: function(data) {
-                $('#login-button')
-                    .removeAttr('disabled')
-                    .text('Login');
-            }
-        });
-	})();*/
-	
 	// Make the authentication call, note that being in an onclick handler
         // is important; most browsers will hide windows opened without a
         // 'click blessing'
         authenticationInfo.authenticate = function(){
-        	return (authentication_cache = SEauthentication(authentication_cache)); 	
-        };
-        
-        function SEauthentication(authentication_cache_object){
-        	/*console.error("authobj",authentication_cache_object);
-        	if(!authentication_cache_object){
-        		authentication_cache_object = SE.authenticate({
-		            success: function(data) {
-		                console.error("Success", data);
-		                return data;
-		            },
-		            error: function(data) {
-		                alert('An error occurred:\n' + data.errorName + '\n' + data.errorMessage);
-		            },
-		            networkUsers: true
-		        });
-        	}
-        	console.error("End of the day, this is the cache object: ", authentication_cache_object);
-        	return authentication_cache_object;*/
-        	location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";        	
+        	if(!window.globalObject.access_token){
+        		location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";         		
+        	}       	
         };
         
     return authenticationInfo;

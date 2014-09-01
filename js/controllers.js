@@ -8,20 +8,12 @@ myApp.controller('GlobalController', ['$scope', '$routeParams', '$http',
 }]);
 
 myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$routeParams', '$http',
-  function(userLoginAuthentication, $scope, $routeParams, $http) {  	
-  	console.error("In the login Controller");
+  function(userLoginAuthentication, $scope, $routeParams, $http) {  
 	$scope.userLoginAuthentication = userLoginAuthentication;
-	console.error(userLoginAuthentication);
     
 	this.stackExchangeLogin = function(){		
-	console.error("userlogin auth2:");
-		userLoginAuthentication.authenticate().success(
-			function(data){
-				console.error("Attempting to save login data");
-				this.loginCredentials = data;
-			}.bind(this)
-		);
-	}.bind(this);
+		userLoginAuthentication.authenticate();
+	};
 
 
 }]);
