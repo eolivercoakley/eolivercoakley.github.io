@@ -29,7 +29,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
         // is important; most browsers will hide windows opened without a
         // 'click blessing'
         authenticationInfo.authenticate = function(){
-        	console.error("Attempting to authenticate");
+        	console.error("Attempting to authenticate2");
 	        return SE.authenticate({
 	            success: function(data) {
 	                //$scope.loginCredentials = data;
@@ -76,14 +76,11 @@ myApp.factory('allUserData', ['$http',  function($http) {
 	};  
 
 	function generalAPICall(promiseData, url){
-		//console.error(promiseData);
 		if(!promiseData){
-			//console.error("Making a request!");
 			promiseData = $http.jsonp(url).success(function(data){
 				return data;
 			});	
 		}
-		//onsole.error("Returned: ", promiseData);
 		return promiseData;
 	}
 

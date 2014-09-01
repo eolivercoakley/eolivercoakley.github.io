@@ -13,7 +13,8 @@ myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$rout
 	$scope.userLoginAuthentication = userLoginAuthentication;
 	console.error(userLoginAuthentication);
     
-	this.stackExchangeLogin = function(){
+	this.stackExchangeLogin = function(){		
+	console.error("userlogin auth:", userLoginAuthentication);
 		userLoginAuthentication.authenticate().success(
 			function(data){
 				console.error("Attempting to save login data");
