@@ -1,13 +1,11 @@
-var stackExchangeApp = angular.module('stackExchangeApp', [
-  'ngRoute',
-  'stackExchangeControllers'
-]);
+var myApp = angular.module('stackExchangeApp', ['ngRoute']);
 
-stackExchangeApp.config(['$routeProvider',
+myApp.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
 			when('/login', {
 				templateUrl: 'partials/loginPage.html',
+				controller: 'LoginController as loginData'
 			}).
 			when('/question', {
 				templateUrl: 'partials/questionPage.html',
@@ -19,7 +17,7 @@ stackExchangeApp.config(['$routeProvider',
 			}).
 			when('/home', {
 				templateUrl: 'partials/homePage.html',
-				controller: 'HomeController'
+				controller: 'HomeController as homeData'
 			}).
 			otherwise({
 				redirectTo: '/login'

@@ -10,11 +10,12 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/factories.js"></script>
     <script src="js/controllers.js"></script>
     <script src='js/stackExchangeApi.js'></script>
 </head>
 
-<body ng-controller="LoginController">
+<body ng-controller="GlobalController">
     Temp header widget:
     <br>
     <a href="#/login">
@@ -33,9 +34,6 @@
     <br>
     <br>
     <br>
-    <!--a href="https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io"-->
-        <button id="login-button" ng-click="stackExchangeLogin()">Login Button</button>
-    <!--/a-->
     <div ng-view></div>
 </body>
 
