@@ -32,9 +32,10 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
         	console.error("Attempting to authenticate");
 	        SE.authenticate({
 	            success: function(data) {
-	                $scope.loginCredentials = data;
-	                $scope.$apply();
-	                console.error($scope.loginCredentials);
+	                //$scope.loginCredentials = data;
+	                //$scope.$apply();
+	                //console.error($scope.loginCredentials);
+	                return data;
 	            },
 	            error: function(data) {
 	                alert('An error occurred:\n' + data.errorName + '\n' + data.errorMessage);
