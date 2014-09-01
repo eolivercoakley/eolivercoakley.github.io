@@ -15,7 +15,7 @@ myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$rout
     
 	this.stackExchangeLogin = function(){		
 	console.error("userlogin auth:", userLoginAuthentication.authenticate());
-		//userLoginAuthentication.authenticate();/*.success(
+		/*userLoginAuthentication.authenticate().success(
 			function(data){
 				console.error("Attempting to save login data");
 				this.loginCredentials = data;
