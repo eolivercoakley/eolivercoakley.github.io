@@ -29,19 +29,21 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
         // is important; most browsers will hide windows opened without a
         // 'click blessing'
         authenticationInfo.authenticate = function(){
-        	console.error("Attempting to authenticate2");
-	        return SE.authenticate({
+        	console.error("Attempting to authenticate3");
+	        var a = SE.authenticate({
 	            success: function(data) {
 	                //$scope.loginCredentials = data;
 	                //$scope.$apply();
-	                //console.error($scope.loginCredentials);
+	                console.error("Success!");
 	                return data;
 	            },
 	            error: function(data) {
 	                alert('An error occurred:\n' + data.errorName + '\n' + data.errorMessage);
 	            },
 	            networkUsers: true
-	        });        	
+	        });
+	        console.error(a);
+	        return a;    	
         };
         
     return authenticationInfo;
