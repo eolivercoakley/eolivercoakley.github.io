@@ -34,7 +34,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
 	            success: function(data) {
 	                //$scope.loginCredentials = data;
 	                //$scope.$apply();
-	                console.error("Success!");
+	                console.error("Success", data);
 	                return data;
 	            },
 	            error: function(data) {
