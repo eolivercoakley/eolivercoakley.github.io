@@ -28,7 +28,7 @@ myApp.factory('allUserData', ['$http',  function($http) {
 	console.error("Building out the user data request...");
   	
   	var allUserInfo = {};	
-  	var accessToken = "(mZUdl3i(U*5(q*jl*SNkw))";
+  	var accessToken = window.globalObject.stackexchange || "(mZUdl3i(U*5(q*jl*SNkw))";
   	var promise_userInfo, promise_userBadgesInfo, promise_userTimelineInfo, promise_userFavorites, promise_userTagCloudInfo;
   	  	
     allUserInfo.getUserInfo = function(){
