@@ -14,13 +14,13 @@ myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$rout
 	console.error(userLoginAuthentication);
     
 	this.stackExchangeLogin = function(){		
-	console.error("userlogin auth:", userLoginAuthentication);
-		userLoginAuthentication.authenticate().success(
+	console.error("userlogin auth:", userLoginAuthentication.authenticate());
+		//userLoginAuthentication.authenticate();/*.success(
 			function(data){
 				console.error("Attempting to save login data");
 				this.loginCredentials = data;
 			}.bind(this)
-		);
+		);*/
 	}.bind(this);
 
 
