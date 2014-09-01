@@ -6,7 +6,8 @@ window.globalObject = {
 	"access_token" : null
 };
 
-$(document).ready(function(){
+//Singleton to obtain access data from the url before the page is re-routed.
+(function(){
 	console.error("When do we get here?");	
 	console.error("Also current location: ", location.href);
 	console.error("Also current hash: ", location.hash);
@@ -16,7 +17,7 @@ $(document).ready(function(){
     	window.globalObject[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
   	}
 	console.error(window.globalObject);
-});
+})();
 
 myApp.config(['$routeProvider',
 	function($routeProvider) {
