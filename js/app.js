@@ -1,5 +1,7 @@
 var myApp = angular.module('stackExchangeApp', ['ngRoute']);
 
+console.error("Initial location: ", location.href);
+
 myApp.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.

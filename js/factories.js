@@ -10,7 +10,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
 	
 	var authentication_cache;
 		
-	(function (){
+	/*(function (){
 		SE.init({
             // Parameters obtained by registering an app, these are specific to the SE
             // documentation site
@@ -25,7 +25,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
                     .text('Login');
             }
         });
-	})();
+	})();*/
 	
 	// Make the authentication call, note that being in an onclick handler
         // is important; most browsers will hide windows opened without a
@@ -35,7 +35,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
         };
         
         function SEauthentication(authentication_cache_object){
-        	console.error("authobj",authentication_cache_object);
+        	/*console.error("authobj",authentication_cache_object);
         	if(!authentication_cache_object){
         		authentication_cache_object = SE.authenticate({
 		            success: function(data) {
@@ -49,7 +49,8 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
 		        });
         	}
         	console.error("End of the day, this is the cache object: ", authentication_cache_object);
-        	return authentication_cache_object;
+        	return authentication_cache_object;*/
+        	location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";        	
         };
         
     return authenticationInfo;
