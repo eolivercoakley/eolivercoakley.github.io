@@ -30,7 +30,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
         // 'click blessing'
         authenticationInfo.authenticate = function(){
         	console.error("Attempting to authenticate");
-	        SE.authenticate({
+	        return SE.authenticate({
 	            success: function(data) {
 	                //$scope.loginCredentials = data;
 	                //$scope.$apply();
