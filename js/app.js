@@ -24,11 +24,11 @@ myApp.config(['$routeProvider',
 			}).
 			when('/question', {
 				templateUrl: 'partials/questionPage.html',
-				controller: 'QuestionController'
+				controller: 'QuestionController as questionData'
 			}).
 			when('/search', {
 				templateUrl: 'partials/searchPage.html',
-				controller: 'SearchController'
+				controller: 'SearchController as searchData'
 			}).
 			when('/home', {
 				templateUrl: 'partials/homePage.html',

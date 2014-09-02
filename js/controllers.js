@@ -15,6 +15,9 @@ myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$rout
 		userLoginAuthentication.authenticate();
 	};
 
+	if(window.globalObject.access_token){
+		this.loginCredentials = window.globalObject;
+	}
 
 }]);
 
@@ -65,11 +68,27 @@ myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$h
 
 myApp.controller('QuestionController', ['questionData', '$scope', '$routeParams', '$http',
   function(questionData, $scope, $routeParams, $http) {  	
-  	  	$scope.questionData = questionData;  	  		
+  	  	$scope.questionData = questionData;  
+  	  	
+  	  	if(questionData.getQuestionID()){
+  	  		questionData.getQuestionAPIData().success(
+  	  			function(data){
+  	  				this.questionInfo = data;
+  	  			}.bind(this)
+  	  		);
+  	  	};  	  		  		
 }]);
 
 
 myApp.controller('SearchController', ['searchData', '$scope', '$routeParams', '$http',
   function(searchData, $scope, $routeParams, $http) {  	
-  	  	$scope.searchData = searchData;  	  		
+  	  	$scope.searchData = searchData;  
+  	  	
+		if(searchData.getSearchTag()){
+  	  		searchData.getSearchAPIData().success(
+  	  			function(data){
+  	  				this.searchInfo = data;
+  	  			}.bind(this)
+  	  		);
+  	  	};  	  		
 }]);
