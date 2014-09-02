@@ -2,12 +2,18 @@
  * Created by ecoakley on 8/28/2014.
  */
 
+myApp.factory('globalObject', ['$http',  function($http) {
+    console.error("Creating the global service");
+
+    var globalObject = window.globalObject || {};
+
+    return globalObject;
+}]);
 
 myApp.factory('userLoginAuthentication', ['$http',  function($http) {
 	console.error("ATTEMPTING LOGIN INIT!");
 	
-  	var authenticationInfo = {};	
-	
+  	var authenticationInfo = {};
 	var authentication_cache;
 		
 	authenticationInfo.authenticate = function(){
