@@ -67,12 +67,13 @@ myApp.factory('questionData', ['$http',  function($http) {
 	
   	var questionObject = {};	
 	var questionID = 11541695;
-	var promise_questionInfo;
+	var promise_questionInfo;	
+	var lastSearchUrl = "";
 	
 	questionObject.getQuestionAPIData = function(){
-    	return (promise_questionInfo = questionAPICall(promise_questionInfo, "https://api.stackexchange.com/2.2/questions/"+ questionID +"?order=desc&sort=activity&site=stackoverflow&callback=JSON_CALLBACK"));
-	};
-	
+    	return (promise_questionInfo = questionAPICall(promise_questionInfo, "https://api.stackexchange.com/2.2/questions/"+ questionID +"?order=desc&filter=!)rCcH9YBU.wsVQxBWq.X&sort=activity&site=stackoverflow&callback=JSON_CALLBACK"));
+	};	
+		
 	questionObject.setQuestionID = function(_questionID){
 		questionID = _questionID;
 	};
@@ -82,7 +83,8 @@ myApp.factory('questionData', ['$http',  function($http) {
 	};    
       
 	function questionAPICall(promiseData, url){
-		if(!promiseData){
+		if(!promiseData || url != lastSearchUrl){			
+			lastSearchUrl = url;
 			promiseData = $http.jsonp(url).success(function(data){
 				return data;
 			});	
@@ -101,6 +103,7 @@ myApp.factory('searchData', ['$http',  function($http) {
 	
 	var searchQuery = 'javascript';
 	var promise_searchInfo;
+	var lastSearchUrl = "";
 		
 	searchObject.getSearchAPIData = function(){		
     	return (promise_searchInfo = searchAPICall(promise_searchInfo, "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=activity&q=" + searchQuery + "&closed=False&tagged=javascript&site=stackoverflow&callback=JSON_CALLBACK"));
@@ -115,7 +118,9 @@ myApp.factory('searchData', ['$http',  function($http) {
 	};    
       
 	function searchAPICall(promiseData, url){
-		if(!promiseData){
+		if(!promiseData || url != lastSearchUrl){
+			console.error("New search!");
+			lastSearchUrl = url;
 			promiseData = $http.jsonp(url).success(function(data){
 				return data;
 			});	

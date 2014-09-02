@@ -23,9 +23,7 @@ myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$rout
 
 
 myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$http',
-  function(allUserData, $scope, $routeParams, $http) {  	
-  		console.error("Home Controller");
-  	  	$scope.allUserData = allUserData;
+  function(allUserData, $scope, $routeParams, $http) {  
   	  	
   	  	//Load all data into respective widgets
   	  	//General User Data
@@ -68,27 +66,43 @@ myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$h
 
 myApp.controller('QuestionController', ['questionData', '$scope', '$routeParams', '$http',
   function(questionData, $scope, $routeParams, $http) {  	
-  	  	$scope.questionData = questionData;  
-  	  	
+  	
+  	  	//Initial Load
   	  	if(questionData.getQuestionID()){
   	  		questionData.getQuestionAPIData().success(
   	  			function(data){
-  	  				this.questionInfo = data;
+  	  				this.questionInfo = data.items;
+  	  				console.error(data);
   	  			}.bind(this)
   	  		);
-  	  	};  	  		  		
+  	  	};
 }]);
 
 
-myApp.controller('SearchController', ['searchData', '$scope', '$routeParams', '$http',
-  function(searchData, $scope, $routeParams, $http) {  	
-  	  	$scope.searchData = searchData;  
+myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$routeParams', '$http',
+  function(searchData, questionData, $scope, $routeParams, $http) {  	
   	  	
-		if(searchData.getSearchTag()){
+  	  	//Set the question ID and now load the new page.
+  	  	this.loadQuestion = function(questionInfo){
+  	  		questionData.setQuestionID(questionInfo);
+  	  		location.href = "#/question";
+  	  	};
+  	  	
+  	  	//Get search information from the API when the user submits the form post.
+  	  	this.getSearchInfo = function(searchInfo){
+  	  		console.error("In search info");
+  	  		//Update the search only if the user is requesting a new query.
+  	  		if(searchInfo && searchInfo.userInputText){
+  	  			searchData.setSearchTag(searchInfo.userInputText);
+			}
+			//Make the API call and update data upon return
   	  		searchData.getSearchAPIData().success(
   	  			function(data){
-  	  				this.searchInfo = data;
+  	  				this.searchInfo = data.items;
   	  			}.bind(this)
   	  		);
-  	  	};  	  		
+  	  	};
+  	  	
+  	  	//Run this request initially to load the default search settings.
+  	  	this.getSearchInfo.bind(this)();
 }]);

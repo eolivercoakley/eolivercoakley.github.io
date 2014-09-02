@@ -1,6 +1,12 @@
-<table>
+<form novalidate class="simple-form">
+	<input type="text" ng-model="searchData.userInputText" />
+	<button ng-click="searchData.getSearchInfo(searchData)">Search</button>
+</form>
+
+<table ng-repeat="(key, question) in searchData.searchInfo">
 	<br><br>Search Info:
-	<tr ng-repeat="(key, value) in searchData.searchInfo">
-	  <td> {{key}} </td> <td> {{ value }} </td>
+	<tr ng-repeat="(_key, value) in question" >
+	  <td> {{ _key }} </td> <td> {{ value }} </td>
 	</tr>
+	<td><button ng-click="searchData.loadQuestion(question.question_id)">Link to question with id: {{question.question_id}}</button></td>
 </table>

@@ -1,7 +1,6 @@
-
-<table>
+<table ng-repeat="(key, question) in questionData.questionInfo">
 	<br><br>Question Info:
-	<tr ng-repeat="(key, value) in questionData.questionInfo">
-	  <td> {{key}} </td> <td> {{ value }} </td>
+	<tr ng-repeat="(_key, value) in question" >
+	  <td> {{ _key }} </td> <td> {{ value }} </td>
 	</tr>
 </table>
