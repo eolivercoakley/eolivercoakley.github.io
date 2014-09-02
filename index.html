@@ -18,10 +18,10 @@
 <body ng-controller="GlobalController">
     Temp header widget:
     <br>
-    <a href="#/login">
+    <a href="#/login" ng-show="!(window.globalObject.access_token)">
         <input type="submit" value="Login">
     </a>
-    <a href="#/home">
+    <a href="#/home" ng-show="window.globalObject.access_token">
         <input type="submit" value="Home">
     </a>
     <a href="#/question">
