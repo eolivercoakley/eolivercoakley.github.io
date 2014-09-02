@@ -4,7 +4,8 @@
 
 
 myApp.controller('GlobalController', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {  	
+  function($scope, $routeParams, $http) {
+      $scope.isAuthenticated = window.globalObject.access_token;
 }]);
 
 myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$routeParams', '$http',
@@ -48,7 +49,7 @@ myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$h
   	  		{
 				"functionName"	: "getUserTagCloudInfo",
 				"tableValue"	: "tagCloudInfo"				
-  	  		},
+  	  		}
   	  		
   		];
   	  	
