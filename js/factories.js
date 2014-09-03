@@ -13,12 +13,13 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 		//Singleton to obtain access data from the url before the page is re-routed.
 		//Everything is stored in the "window.globalObject", which is in turn used to build the globalObject model.
 		(function(){
-			var urlParams = location.hash.substring(location.hash.indexOf('#') + 1).split('&');
+			console.error(location.hash);
+			var urlParams = location.hash.substring(location.hash.indexOf('#') + 2).split('&');
 			for (var i = 0; i < urlParams.length; i++) {
 		    	var pair = urlParams[i].split('=');
 		    	globalObject[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-		    	console.error(globalObject);
 		  	}
+		    console.error(globalObject);
 		})();
 
 	
@@ -26,13 +27,15 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 		console.error("Obtaining cookie data...");
     	//If the access_token is being returned for the first time
     	var cookie_access_info = $cookieStore.get("access_token");
-    
+    	console.error(cookie_access_info);
 	    if(cookie_access_info){
 	    	accessToken = cookie_access_info;
+	    	console.error(accessToken);
 	    }
 	    else if(globalObject.access_token){
 	    	accessToken = globalObject.access_token;
-	    	$cookieStore.put("access_token", accessToken);
+	    	$cookieStore.put("access_token", accessToken);	    	
+	    	console.error(accessToken);
 	    }		
 	})();
 		
