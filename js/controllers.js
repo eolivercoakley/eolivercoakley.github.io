@@ -9,13 +9,17 @@ myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', 
       $scope.isAuthenticated = globalObject.getAccessToken();
 }]);
 
-myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$routeParams', '$http',
-  function(userLoginAuthentication, $scope, $routeParams, $http) {  
+myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', '$scope', '$routeParams', '$http',
+  function(globalObject, userLoginAuthentication, $scope, $routeParams, $http) {  
 	$scope.userLoginAuthentication = userLoginAuthentication;
         	
 	this.stackExchangeLogin = function(){		
 		userLoginAuthentication.authenticate();
 	};
+
+	if(globalObject.getAccessToken()){
+		location.href = "#/home";
+	}
 
 }]);
 
@@ -80,6 +84,7 @@ myApp.controller('QuestionController', ['questionData', '$scope', '$routeParams'
 myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$routeParams', '$http',
   function(searchData, questionData, $scope, $routeParams, $http) {  	
   	  	
+  	  	  	  	
   	  	//Set the question ID and now load the new page.
   	  	this.loadQuestion = function(questionInfo){
   	  		questionData.setQuestionID(questionInfo);

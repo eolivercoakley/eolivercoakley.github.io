@@ -44,7 +44,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
     return globalObject;
 }]);
 
-myApp.factory('userLoginAuthentication', ['globalObject', '$http', function(globalObject, $http) {
+myApp.factory('userLoginAuthentication', [ '$http', 'globalObject', function($http, globalObject) {
 	console.error("ATTEMPTING LOGIN INIT!");
 	
   	var authenticationInfo = {};
