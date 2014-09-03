@@ -13,10 +13,11 @@ myApp.controller('LoginController', ['userLoginAuthentication', '$cookieStore', 
 	$scope.userLoginAuthentication = userLoginAuthentication;
     
     //If the access_token is being returned for the first time
-    var cookie;
-    if(cookie = $cookieStore.get("access_token")){
-    	var access_info = $cookieStore.get("access_token");
-    	window.globalObject.access_info = access_info;
+    var cookie_access_info = $cookieStore.get("access_token");
+    console.error(cookie_access_info);
+    
+    if(cookie_access_info){
+    	window.globalObject.access_info = cookie_access_info;
     	this.loginCredentials = window.globalObject;
     }
     else if(window.globalObject.access_token){
