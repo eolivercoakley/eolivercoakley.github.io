@@ -8,19 +8,21 @@ myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', 
       $scope.isAuthenticated = globalObject.access_token;
 }]);
 
-myApp.controller('LoginController', ['userLoginAuthentication', '$cookies', '$scope', '$routeParams', '$http',
-  function(userLoginAuthentication, $cookies, $scope, $routeParams, $http) {  
+myApp.controller('LoginController', ['userLoginAuthentication', 'cookieStore', '$scope', '$routeParams', '$http',
+  function(userLoginAuthentication, $cookieStore, $scope, $routeParams, $http) {  
 	$scope.userLoginAuthentication = userLoginAuthentication;
     
     //If the access_token is being returned for the first time
     if($cookies.access_info){
-    	console.error("Loading access info from cookies: ", $cookies.access_info);
-    	this.loginCredentials = $cookies.access_info;
+    	console.error($cookies.access_info);
+    	var access_info = $cookieStore.get("access_token");
+    	window.globalObject.access_info = access_info;
+    	this.loginCredentials = window.globalObject;
     }
     else if(window.globalObject.access_token){
     	console.error("No cookie info...");
     	this.loginCredentials = window.globalObject;
-    	$cookies.access_info = this.loginCredentials;
+    	$cookieStore.put("access_token", window.globalObject.access_token);
     	console.error("Cookies:", $cookies.access_info);
     }
 	
