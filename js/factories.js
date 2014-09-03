@@ -2,19 +2,11 @@
  * Created by ecoakley on 8/28/2014.
  */
 
-myApp.factory('globalObject', ['$http',  function($http) {
+myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieStore) {
     console.error("Creating the global service");
 
-    var globalObject = window.globalObject || {};
+    var globalObject = {}; // = window.globalObject || {};
 
-    return globalObject;
-}]);
-
-myApp.factory('userLoginAuthentication', ['$http', '$cookieStore', function($http, $cookieStore) {
-	console.error("ATTEMPTING LOGIN INIT!");
-	
-  	var authenticationInfo = {};
-	var authentication_cache;
 	var accessToken = "";
 	
 	(function obtainCookieData(){
@@ -31,13 +23,24 @@ myApp.factory('userLoginAuthentication', ['$http', '$cookieStore', function($htt
 	    }		
 	})();
 		
-	authenticationInfo.getAuthToken = function(){
+	globalObject.getAccessToken = function(){
 		return accessToken;
 	};	
+
+    return globalObject;
+}]);
+
+myApp.factory('userLoginAuthentication', ['globalObject', '$http', function(globalObject, $http) {
+	console.error("ATTEMPTING LOGIN INIT!");
+	
+  	var authenticationInfo = {};
+	var authentication_cache;
 		
 	authenticationInfo.authenticate = function(){
 			console.error("Attempting to authenticate");
-        	if(!accessToken){
+			console.error(globalObject);
+			console.error(globalObject.getAccessToken());
+        	if(!(globalObject.getAccessToken())){
         		location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";         		
         	}       	
         };
