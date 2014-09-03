@@ -17,7 +17,8 @@ myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', 
 		userLoginAuthentication.authenticate();
 	};
 
-	console.error("Hmmmmmmm....");
+	//Auto redirect if login is valid. Shouldn't need this, as navigation won't allow the user to return to login 
+	//after authentication, but prevents the user from directly inputting the url.
 	if(globalObject.getAccessToken()){
 		location.href = "#/home";
 	}
