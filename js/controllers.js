@@ -8,7 +8,7 @@ myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', 
       $scope.isAuthenticated = globalObject.access_token;
 }]);
 
-myApp.controller('LoginController', ['userLoginAuthentication', 'cookieStore', '$scope', '$routeParams', '$http',
+myApp.controller('LoginController', ['userLoginAuthentication', '$cookieStore', '$scope', '$routeParams', '$http',
   function(userLoginAuthentication, $cookieStore, $scope, $routeParams, $http) {  
 	$scope.userLoginAuthentication = userLoginAuthentication;
     
