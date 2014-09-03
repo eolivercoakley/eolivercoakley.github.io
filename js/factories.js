@@ -37,10 +37,8 @@ myApp.factory('userLoginAuthentication', ['globalObject', '$http', function(glob
 	var authentication_cache;
 		
 	authenticationInfo.authenticate = function(){
-			console.error("Attempting to authenticate");
-			console.error(globalObject);
-			console.error(globalObject.getAccessToken());
-        	if(!(globalObject.getAccessToken())){
+        	if(!(globalObject.getAccessToken())){        		
+				console.error("Authentication Redirect!");
         		location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";         		
         	}       	
         };
@@ -49,13 +47,14 @@ myApp.factory('userLoginAuthentication', ['globalObject', '$http', function(glob
 }]);
 
 
-myApp.factory('allUserData', ['$http',  function($http) {
+myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalObject) {
 		
 	console.error("Building out the user data request...");
   	
   	var allUserInfo = {};	
-  	var accessToken = window.globalObject.access_token || "(mZUdl3i(U*5(q*jl*SNkw))";
+  	var accessToken = globalObject.getAccessToken() || "(mZUdl3i(U*5(q*jl*SNkw))";
   	var promise_userInfo, promise_userBadgesInfo, promise_userTimelineInfo, promise_userFavorites, promise_userTagCloudInfo;
+
   	  	
     allUserInfo.getUserInfo = function(){
 		return (promise_userInfo = generalAPICall(promise_userInfo, "https://api.stackexchange.com/2.2/me?order=desc&sort=reputation&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&callback=JSON_CALLBACK"));
