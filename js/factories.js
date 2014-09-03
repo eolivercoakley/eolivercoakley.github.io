@@ -17,6 +17,7 @@ myApp.factory('userLoginAuthentication', ['$http',  function($http) {
 	var authentication_cache;
 		
 	authenticationInfo.authenticate = function(){
+		console.error(window.globalObject.access_token);
         	if(!window.globalObject.access_token){
         		location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";         		
         	}       	
