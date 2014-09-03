@@ -13,17 +13,15 @@ myApp.controller('LoginController', ['userLoginAuthentication', 'cookieStore', '
 	$scope.userLoginAuthentication = userLoginAuthentication;
     
     //If the access_token is being returned for the first time
-    if($cookies.access_info){
-    	console.error($cookies.access_info);
+    var cookie;
+    if(cookie = $cookieStore.get("access_token")){
     	var access_info = $cookieStore.get("access_token");
     	window.globalObject.access_info = access_info;
     	this.loginCredentials = window.globalObject;
     }
     else if(window.globalObject.access_token){
-    	console.error("No cookie info...");
     	this.loginCredentials = window.globalObject;
     	$cookieStore.put("access_token", window.globalObject.access_token);
-    	console.error("Cookies:", $cookies.access_info);
     }
 	
 	this.stackExchangeLogin = function(){		
