@@ -3,7 +3,6 @@ var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies']);
 console.error("Initial location: ", location.href);
 
 window.globalObject = {
-	"access_token" : null
 };
 
 //Singleton to obtain access data from the url before the page is re-routed.
@@ -12,6 +11,7 @@ window.globalObject = {
 	for (var i = 0; i < urlParams.length; i++) {
     	var pair = urlParams[i].split('=');
     	window.globalObject[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+    	console.error(window.globalObject);
   	}
 })();
 
