@@ -8,19 +8,18 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
     var globalObject = {};
 
 	var accessToken = "";
+	var locationObject = {}; //Used to store the auth data passed back via location.hash
 	
-	
-		//Singleton to obtain access data from the url before the page is re-routed.
-		//Everything is stored in the "window.globalObject", which is in turn used to build the globalObject model.
-		(function(){
-			console.error(location.hash);
-			var urlParams = location.hash.substring(location.hash.indexOf('#') + 2).split('&');
-			for (var i = 0; i < urlParams.length; i++) {
-		    	var pair = urlParams[i].split('=');
-		    	globalObject[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-		  	}
-		    console.error(globalObject);
-		})();
+	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
+	(function getDataPassedBackViaLogin(){
+		console.error(location.hash);
+		var urlParams = location.hash.substring(location.hash.indexOf('#') + 2).split('&');
+		for (var i = 0; i < urlParams.length; i++) {
+	    	var pair = urlParams[i].split('=');
+	    	locationObject[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+	  	}
+	    console.error(locationObject);
+	})();
 
 	
 	(function obtainCookieData(){
@@ -32,8 +31,8 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	    	accessToken = cookie_access_info;
 	    	console.error(accessToken);
 	    }
-	    else if(globalObject.access_token){
-	    	accessToken = globalObject.access_token;
+	    else if(locationObject.access_token){
+	    	accessToken = locationObject.access_token;
 	    	$cookieStore.put("access_token", accessToken);	    	
 	    	console.error(accessToken);
 	    }		

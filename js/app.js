@@ -1,10 +1,4 @@
-
-
-/*console.error("Initial location: ", location.href);
-
-window.globalObject = {
-	"access_token" : null
-};*/
+/* Routing Configs */
 
 myApp.config(['$routeProvider',
 	function($routeProvider) {
