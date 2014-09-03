@@ -7,7 +7,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 
     var globalObject = {}; //Object to store the access token 
 	var locationObject = {}; //Used to store the auth data passed back via location.hash	
-	var accessToken = "";
+	var accessToken;
 	
 	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
 	(function getDataPassedBackViaLogin(){
@@ -32,6 +32,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	    }
 	    //If the accessToken has been set, then the user can login. Redirect to the home page.
 	    if(accessToken){
+	    	console.error(accessToken);
 	    	location.href = "#/home";
 	    }		
 	})();
