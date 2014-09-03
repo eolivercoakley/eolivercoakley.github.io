@@ -5,7 +5,7 @@
 
 myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', '$http',
   function(globalObject, $scope, $routeParams, $http) {
-      $scope.isAuthenticated = globalObject.access_token;
+      $scope.isAuthenticated = globalObject.getAccessToken();
 }]);
 
 myApp.controller('LoginController', ['userLoginAuthentication', '$scope', '$routeParams', '$http',
