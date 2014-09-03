@@ -10,19 +10,38 @@ myApp.factory('globalObject', ['$http',  function($http) {
     return globalObject;
 }]);
 
-myApp.factory('userLoginAuthentication', ['$http',  function($http) {
+myApp.factory('userLoginAuthentication', ['$http', '$cookieStore', function($http, $cookieStore) {
 	console.error("ATTEMPTING LOGIN INIT!");
 	
   	var authenticationInfo = {};
 	var authentication_cache;
+	var accessToken = "";
+	
+	(function obtainCookieData(){
+		console.error("Obtaining cookie data...");
+    	//If the access_token is being returned for the first time
+    	var cookie_access_info = $cookieStore.get("access_token");
+    
+	    if(cookie_access_info){
+	    	accessToken = cookie_access_info;
+	    }
+	    else if(window.globalObject.access_token){
+	    	accessToken = window.globalObject.access_token;
+	    	$cookieStore.put("access_token", accessToken);
+	    }		
+	})();
+		
+	authenticationInfo.getAuthToken = function(){
+		return accessToken;
+	};	
 		
 	authenticationInfo.authenticate = function(){
-		console.error(window.globalObject.access_token);
-        	if(!window.globalObject.access_token){
+			console.error("Attempting to authenticate");
+        	if(!accessToken){
         		location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";         		
         	}       	
         };
-        
+            
     return authenticationInfo;
 }]);
 
