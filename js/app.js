@@ -1,4 +1,4 @@
-var myApp = angular.module('stackExchangeApp', ['ngRoute']);
+var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies']);
 
 console.error("Initial location: ", location.href);
 
