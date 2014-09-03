@@ -5,9 +5,22 @@
 myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieStore) {
     console.error("Creating the global service");
 
-    var globalObject = {}; // = window.globalObject || {};
+    var globalObject = {};
 
 	var accessToken = "";
+	
+	
+		//Singleton to obtain access data from the url before the page is re-routed.
+		//Everything is stored in the "window.globalObject", which is in turn used to build the globalObject model.
+		(function(){
+			var urlParams = location.hash.substring(location.hash.indexOf('#') + 1).split('&');
+			for (var i = 0; i < urlParams.length; i++) {
+		    	var pair = urlParams[i].split('=');
+		    	globalObject[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+		    	console.error(globalObject);
+		  	}
+		})();
+
 	
 	(function obtainCookieData(){
 		console.error("Obtaining cookie data...");
@@ -17,8 +30,8 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	    if(cookie_access_info){
 	    	accessToken = cookie_access_info;
 	    }
-	    else if(window.globalObject.access_token){
-	    	accessToken = window.globalObject.access_token;
+	    else if(globalObject.access_token){
+	    	accessToken = globalObject.access_token;
 	    	$cookieStore.put("access_token", accessToken);
 	    }		
 	})();

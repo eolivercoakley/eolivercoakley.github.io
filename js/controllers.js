@@ -2,6 +2,7 @@
  * Created by ecoakley on 8/28/2014.
  */
 
+var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies']);
 
 myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', '$http',
   function(globalObject, $scope, $routeParams, $http) {
