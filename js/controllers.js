@@ -17,6 +17,7 @@ myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', 
 		userLoginAuthentication.authenticate();
 	};
 
+	console.error("Hmmmmmmm....");
 	if(globalObject.getAccessToken()){
 		location.href = "#/home";
 	}
