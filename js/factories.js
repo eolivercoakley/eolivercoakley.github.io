@@ -5,36 +5,34 @@
 myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieStore) {
     console.error("Creating the global service");
 
-    var globalObject = {};
-
+    var globalObject = {}; //Object to store the access token 
+	var locationObject = {}; //Used to store the auth data passed back via location.hash	
 	var accessToken = "";
-	var locationObject = {}; //Used to store the auth data passed back via location.hash
 	
 	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
 	(function getDataPassedBackViaLogin(){
-		console.error(location.hash);
 		var urlParams = location.hash.substring(location.hash.indexOf('#') + 2).split('&');
 		for (var i = 0; i < urlParams.length; i++) {
 	    	var pair = urlParams[i].split('=');
 	    	locationObject[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
 	  	}
-	    console.error(locationObject);
 	})();
-
 	
 	(function obtainCookieData(){
-		console.error("Obtaining cookie data...");
-    	//If the access_token is being returned for the first time
     	var cookie_access_info = $cookieStore.get("access_token");
-    	console.error(cookie_access_info);
+    	
+    	//If we have already stored the data in a cookie
 	    if(cookie_access_info){
 	    	accessToken = cookie_access_info;
-	    	console.error(accessToken);
 	    }
+    	//If we are loading from the url return data
 	    else if(locationObject.access_token){
 	    	accessToken = locationObject.access_token;
-	    	$cookieStore.put("access_token", accessToken);	    	
-	    	console.error(accessToken);
+	    	$cookieStore.put("access_token", accessToken);	   
+	    }
+	    //If the accessToken has been set, then the user can login. Redirect to the home page.
+	    if(accessToken){
+	    	location.href = "#/home";
 	    }		
 	})();
 		
