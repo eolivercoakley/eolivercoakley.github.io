@@ -14,7 +14,7 @@ myApp.controller('LoginController', ['userLoginAuthentication', '$cookies', '$sc
     
     //If the access_token is being returned for the first time
     if($cookies.access_info){
-    	console.error("Loading access info from cookies...");
+    	console.error("Loading access info from cookies: ", $cookies.access_info);
     	this.loginCredentials = $cookies.access_info;
     }
     else if(window.globalObject.access_token){
