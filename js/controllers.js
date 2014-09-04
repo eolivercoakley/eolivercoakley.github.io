@@ -2,11 +2,18 @@
  * Created by ecoakley on 8/28/2014.
  */
 
-var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies']);
+var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies', 'ngSanitize']);
 
 myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', '$http',
   function(globalObject, $scope, $routeParams, $http) {
       $scope.isAuthenticated = globalObject.getAccessToken();
+      $scope.navigation = function(loc){
+			var newLoc = "#/" + loc;
+			console.error(newLoc);
+	      	location.href = newLoc;
+	      	console.error(loc);
+      };
+      
 }]);
 
 myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', '$scope', '$routeParams', '$http',
@@ -75,8 +82,8 @@ myApp.controller('QuestionController', ['questionData', '$scope', '$routeParams'
   	  	if(questionData.getQuestionID()){
   	  		questionData.getQuestionAPIData().success(
   	  			function(data){
-  	  				this.questionInfo = data.items;
-  	  				console.error(data);
+  	  				this.questionInfo = data.items[0];
+  	  				console.error(this.questionInfo);
   	  			}.bind(this)
   	  		);
   	  	};

@@ -1,6 +1,23 @@
-<table ng-repeat="(key, question) in questionData.questionInfo">
-	<br><br>Question Info:
-	<tr ng-repeat="(_key, value) in question" >
-	  <td> {{ _key }} </td> <td> {{ value }} </td>
-	</tr>
-</table>
+
+Title: {{questionData.questionInfo.title}}
+<br><br>
+Body: <div ng-bind-html="questionData.questionInfo.body"></div>
+<br><br>
+Comments on Body:
+<div ng-repeat="comment in questionData.questionInfo.comments">
+	Comment: <div ng-bind-html="comment.body"></div>
+</div>
+<br><br>
+
+Answers:
+<div ng-repeat="answer in questionData.questionInfo.answers">
+	Answer: <div ng-bind-html="answer.body"></div>	
+		<div ng-repeat="comment in answer.comments">
+			Comment Info: 
+				Score: {{comment.score}}
+				Created On: <span>{{comment.creation_date | date:'medium'}}</span><br>
+				Body: <div ng-bind-html="comment.body"></div>
+		</div>
+</div>
+<br><br>
+<button>Set as Favorite?</button>
