@@ -1,3 +1,29 @@
+body{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+}
+
 .globalHeader{
 	float: right;
+}
+
+.question_page_container{
+	width: 90%;
+	position: relative;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+.question_page_container .all_answers_panel{
+	min-width: 800px;
+	width: 85%;
+	position: relative;
+	margin: 0 auto;
+}
+
+.avatar_size{
+	width: 32px;
+	height: 32px;
 }

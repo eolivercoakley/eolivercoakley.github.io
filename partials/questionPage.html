@@ -1,23 +1,68 @@
+<!-- Question Page -->
 
-Title: {{questionData.questionInfo.title}}
-<br><br>
-Body: <div ng-bind-html="questionData.questionInfo.body"></div>
-<br><br>
-Comments on Body:
-<div ng-repeat="comment in questionData.questionInfo.comments">
-	Comment: <div ng-bind-html="comment.body"></div>
-</div>
-<br><br>
-
-Answers:
-<div ng-repeat="answer in questionData.questionInfo.answers">
-	Answer: <div ng-bind-html="answer.body"></div>	
-		<div ng-repeat="comment in answer.comments">
-			Comment Info: 
-				Score: {{comment.score}}
-				Created On: <span>{{comment.creation_date | date:'medium'}}</span><br>
-				Body: <div ng-bind-html="comment.body"></div>
+<!--Title Section -->
+<div class="question_page_container">
+	Title
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	  	{{questionData.questionInfo.title}}
+	  	  </div>
+	</div>
+	
+	<br><br>
+	
+	<!-- Question's Body  -->
+	Body
+	
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	  	<div ng-bind-html="questionData.questionInfo.body"></div>
+	  	  	  </div>
+	</div>
+	<br><br>
+	
+	
+	<!-- Question's Body's Comments  -->
+	Comments on Body:
+	
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div ng-repeat="comment in questionData.questionInfo.comments">
+				Comment: <div ng-bind-html="comment.body"></div>
+			</div>
 		</div>
+	</div>
+	<br><br>
+	
+	
+	<!-- Answers and Answer's Comments  -->
+	ANSWER SECTION
+	<div class="panel panel-default all_answers_panel" ng-repeat="answer in questionData.questionInfo.answers">
+		<div class="media panel-body">
+		  <a class="pull-left" href="#">
+		    <img class="media-object" src={{answer.owner.profile_image}} alt={{answer.owner.display_name}}>
+		  </a>
+		  <div class="media-body">
+		    <h4 class="media-heading">{{answer.owner.display_name}}</h4>
+		    <div ng-bind-html="answer.body"></div>	
+		    <div ng-repeat="comment in answer.comments">
+		    	<div class="media">
+				  <div class="pull-left">
+		    		<span class="badge">{{comment.score}}</span>
+				  </div>
+				  <div class="media-body">
+					<h4 class="media-heading">{{comment.owner.display_name}}</h4>
+					
+					Created On: <span>{{comment.creation_date | date:'medium'}}</span><br>
+					Body: <div ng-bind-html="comment.body"></div>					
+		    		<img class="media-img avatar_size" src={{comment.owner.profile_image}} alt={{comment.owner.display_name}}><br>
+				  </div>
+				</div>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<br><br>
+	<button>Set as Favorite?</button>
+
 </div>
-<br><br>
-<button>Set as Favorite?</button>
