@@ -9,6 +9,14 @@ body{
 	float: right;
 }
 
+.epicOverflowLogo{
+	position: relative;
+	top: 30px;
+	width: 50%;
+	height: 100px;
+}
+
+
 .question_page_container{
 	width: 90%;
 	position: relative;
@@ -18,12 +26,68 @@ body{
 
 .question_page_container .all_answers_panel{
 	min-width: 800px;
-	width: 85%;
+	width: 100%;
 	position: relative;
 	margin: 0 auto;
+	margin-bottom: 20px;
 }
 
 .avatar_size{
 	width: 32px;
 	height: 32px;
+}
+
+.topNavBar{
+}
+
+.titlePanel{
+	width: 100%;
+}
+
+.question_title{
+	width: 75%;
+	display:inline;
+}
+
+.question_favorite_icon{
+	float:right;
+}
+
+.question_comments{
+	width: 90%;
+	margin: 0 auto;
+}
+
+.question_user_and_score_bar{
+	margin-bottom: 10px;
+}
+
+.answer_user{
+	width: 75%;
+	display:inline;	
+}
+
+.answer_score{	
+	float:right;
+}
+
+.user_date{
+	float:right;
+	margin-top: 10px;
+}
+
+.question_user_info{
+	margin-top: 30px;
+}
+
+.question_user_pic{
+	display: inline;	
+}
+
+.question_user_info .answer_user{
+	margin-left: 5px;
+}
+
+.question_no_border{
+	border: none;
 }

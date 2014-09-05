@@ -19,14 +19,21 @@
 	
 	<body ng-controller="GlobalController">
 	    
+	<div class="navbar-static topNavBar">
 		<!--The global header widget, containing links to the different subpages -->
-		<div class="btn-group globalHeader">
+		<header class=" btn-group globalHeader">
 		  <button type="button" class="btn btn-default" ng-show="!isAuthenticated" ng-click="navigation('login')">Login</button>
 		  <button type="button" class="btn btn-default" ng-show="isAuthenticated" ng-click="navigation('home')">Home</button>
 		  <button type="button" class="btn btn-default" ng-click="navigation('question')">Sample Question</button>
 		  <button type="button" class="btn btn-default" ng-click="navigation('search')">Search</button>
+		</header>
+		
+		<div class="epicOverflowLogo">
+		EPIC OVERFLOW IMG		<br>
+		GOES HERE
 		</div>
-	
+		<ol class="breadcrumb">{{$location.path()}}</ol>
+	</div> 
 		<!--All of the subpages are loaded in the following view -->
 	    <div ng-view></div>
 	    

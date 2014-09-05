@@ -2,67 +2,94 @@
 
 <!--Title Section -->
 <div class="question_page_container">
-	Title
-	<div class="panel panel-default">
-	  <div class="panel-body">
-	  	{{questionData.questionInfo.title}}
-	  	  </div>
+	<div class="titlePanel">
+	  <h3 class="question_title">{{questionData.questionInfo.title}}</h3> <div class="question_favorite_icon">[[STAR]]</div> 
 	</div>
 	
-	<br><br>
+	<br>
 	
 	<!-- Question's Body  -->
-	Body
 	
 	<div class="panel panel-default">
 	  <div class="panel-body">
+	  	
+
+			<h4 class="media-heading answer_score">{{questionData.questionInfo.score}}</h4>
 	  	<div ng-bind-html="questionData.questionInfo.body"></div>
+	  	
+	  	
+				  <div class="question_user_info">
+						<img class="media-object question_user_pic avatar_size" src={{questionData.questionInfo.owner.profile_image}} alt={{questionData.questionInfo.owner.display_name}}>
+		    			<h4 class="media-heading answer_user">{{questionData.questionInfo.owner.display_name}}</h4>
+			<span class="user_date"> {{questionData.questionInfo.creation_date + "000" | date:'medium'}}</span>	
+				  </div>
 	  	  	  </div>
 	</div>
-	<br><br>
-	
 	
 	<!-- Question's Body's Comments  -->
-	Comments on Body:
 	
-	<div class="panel panel-default">
-		<div class="panel-body">
+	<div class="panel panel-default question_comments">
 			<div ng-repeat="comment in questionData.questionInfo.comments">
-				Comment: <div ng-bind-html="comment.body"></div>
+			<div class="media panel-body">
+		  <div class="pull-left">
+		    <img class="media-object avatar_size" src={{comment.owner.profile_image}} alt={{comment.owner.display_name}}>
+		  </div>		
+		  <div class="media-body">
+		  <div class="question_user_and_score_bar">
+		    <h4 class="media-heading answer_user">{{comment.owner.display_name}}</h4>
+			<h4 class="media-heading answer_score">{{comment.score}}</h4>
+			</div>	
+				<div ng-bind-html="comment.body"></div>
+			<span class="user_date">{{comment.creation_date + "000" | date:'medium'}}</span>	
 			</div>
 		</div>
+	</div>
 	</div>
 	<br><br>
 	
 	
 	<!-- Answers and Answer's Comments  -->
-	ANSWER SECTION
+	<h4>Answers: {{questionData.questionInfo.answer_count}} </h4>
 	<div class="panel panel-default all_answers_panel" ng-repeat="answer in questionData.questionInfo.answers">
 		<div class="media panel-body">
-		  <a class="pull-left" href="#">
-		    <img class="media-object" src={{answer.owner.profile_image}} alt={{answer.owner.display_name}}>
-		  </a>
+		  <div class="pull-left">
+		    <img class="media-object avatar_size" src={{answer.owner.profile_image}} alt={{answer.owner.display_name}}>
+		  </div>	  
 		  <div class="media-body">
-		    <h4 class="media-heading">{{answer.owner.display_name}}</h4>
+		  <div class="question_user_and_score_bar">
+		    <h4 class="media-heading answer_user">{{answer.owner.display_name}}</h4>
+			<h4 class="media-heading answer_score">{{answer.score}}</h4>
+			</div>
+<div>
+			<div class="panel panel-default question_no_border">
+		    	<div class="media panel-body">
 		    <div ng-bind-html="answer.body"></div>	
+			<span class="user_date">{{answer.creation_date + "000" | date:'medium'}}</span>	
+			</div>	
+			</div>	
+			</div>	
 		    <div ng-repeat="comment in answer.comments">
-		    	<div class="media">
+		    	
+			<div class="panel panel-default">
+		    	<div class="media panel-body">
 				  <div class="pull-left">
-		    		<span class="badge">{{comment.score}}</span>
+						<img class="media-object avatar_size" src={{comment.owner.profile_image}} alt={{comment.owner.display_name}}>
 				  </div>
 				  <div class="media-body">
-					<h4 class="media-heading">{{comment.owner.display_name}}</h4>
+		  <div class="question_user_and_score_bar">
+		    <h4 class="media-heading answer_user">{{comment.owner.display_name}}</h4>
+			<h4 class="media-heading answer_score">{{comment.score}}</h4>
+			</div>	
+					<div ng-bind-html="comment.body"></div>	
 					
-					Created On: <span>{{comment.creation_date | date:'medium'}}</span><br>
-					Body: <div ng-bind-html="comment.body"></div>					
-		    		<img class="media-img avatar_size" src={{comment.owner.profile_image}} alt={{comment.owner.display_name}}><br>
+					<span class="user_date">{{comment.creation_date + "000" | date:'medium'}}</span>			
 				  </div>
 				</div>
+			</div>
 			</div>
 		  </div>
 		</div>
 	</div>
 	<br><br>
-	<button>Set as Favorite?</button>
 
 </div>

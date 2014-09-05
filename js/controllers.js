@@ -4,15 +4,15 @@
 
 var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies', 'ngSanitize']);
 
-myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', '$http',
-  function(globalObject, $scope, $routeParams, $http) {
+myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', '$http', '$location',
+  function(globalObject, $scope, $routeParams, $http, $location) {
       $scope.isAuthenticated = globalObject.getAccessToken();
       
       //Allow the global header widget's buttons to navigate to the other subsections.
       $scope.navigation = function(loc){
 	      	location.href = "#/" + loc;
       };
-      
+      $scope.$location = $location;
 }]);
 
 myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', '$scope', '$routeParams', '$http',
