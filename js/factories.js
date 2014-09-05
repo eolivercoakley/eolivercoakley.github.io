@@ -53,7 +53,7 @@ myApp.factory('userLoginAuthentication', [ '$http', 'globalObject', function($ht
 	authenticationInfo.authenticate = function(){
         	if(!(globalObject.getAccessToken())){        		
 				console.error("Authentication Redirect!");
-        		location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=&redirect_uri=http://eolivercoakley.github.io";         		
+        		location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=no_expiry,write_access&redirect_uri=http://eolivercoakley.github.io";         		
         	}       	
         };
             
@@ -110,6 +110,7 @@ myApp.factory('questionData', ['$http',  function($http) {
   	var questionObject = {};	
 	var questionID = 11541695;
 	var promise_questionInfo;	
+	var promise_questionFavorite;	
 	var lastSearchUrl = "";
 	
 	questionObject.getQuestionAPIData = function(){
@@ -122,6 +123,10 @@ myApp.factory('questionData', ['$http',  function($http) {
         
 	questionObject.getQuestionID = function(){
 		return questionID;
+	};  
+	
+	questionObject.setFavoriteQuestion = function(){
+		return (promise_questionFavorite = questionAPICall(promise_questionFavorite, "https://api.stackexchange.com/2.2/questions/"+ questionID +"?order=desc&filter=!)rCcH9YBU.wsVQxBWq.X&sort=activity&site=stackoverflow&callback=JSON_CALLBACK"));
 	};    
       
 	function questionAPICall(promiseData, url){

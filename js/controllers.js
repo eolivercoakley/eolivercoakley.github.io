@@ -114,6 +114,10 @@ myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$
   	  		);
   	  	};
   	  	
+  	  	this.setFavorite = function(){
+  	  		
+  	  	}
+  	  	
   	  	//Run this request initially to load the default search settings.
   	  	this.getSearchInfo.bind(this)();
 }]);
