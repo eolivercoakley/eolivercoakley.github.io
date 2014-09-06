@@ -92,15 +92,12 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  		questionData.setFavoriteQuestion().success(
   	  			function(data){
   	  				this.favoriteInfo = data;
-  	  				this.isFavorite();	
+  	  				this.isFavorite = globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1;	
   	  			}.bind(this)
   	  		);
   	  	};
   	  	
-  	  	this.isFavorite = function(){
-  	  		console.error("RUNNING: ", (globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1));
-  	  		return (globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1);
-  	  	}();
+  	  	this.isFavorite = globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1;
 }]);
 
 
