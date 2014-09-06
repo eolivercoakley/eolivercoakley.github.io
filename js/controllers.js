@@ -98,11 +98,9 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  	};
   	  	
   	  	this.isFavorite = function(){
-  	  		console.error("RUNNING!");
-  	  		return globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1;
-  	  	};
-  	  	
-  	  	this.isFavorite();	
+  	  		console.error("RUNNING: ", (globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1));
+  	  		return (globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1);
+  	  	}();
 }]);
 
 
