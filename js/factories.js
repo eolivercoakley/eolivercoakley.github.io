@@ -139,11 +139,11 @@ myApp.factory('questionData', ['$http',  function($http) {
 			promise_questionFavorite = $http({
                     method: "post",
                     url: url_to_search,
-                    data: {
+                    data: $.param({
                         id:"11541695",
 						key:"C8mLfFHVyj1TGEfdDQTEYw((",
 						access_token:"EArpR8xOPPvkKzO6*nfbfg))",
-                    },
+                    }),
                     headers: {
                     	"Content-Type": "application/x-www-form-urlencoded"                    	
                     }
