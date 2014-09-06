@@ -127,8 +127,8 @@ myApp.factory('questionData', ['$http',  function($http) {
 	
 	questionObject.setFavoriteQuestion = function(){
 		if(!promise_questionFavorite){			
-			console.error("Setting a favorite2!");
-			var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite?site=stackoverflow";
+			console.error("Setting a favorite3!");
+			var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite";
 			/*promise_questionFavorite = $http.post(url_to_search, {key:'C8mLfFHVyj1TGEfdDQTEYw((',access_token:'EArpR8xOPPvkKzO6*nfbfg))',id:11541695,site:'stackoverflow'}).success(function(data){
 				console.error(data);
 				return data;
