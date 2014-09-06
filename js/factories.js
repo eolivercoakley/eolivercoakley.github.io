@@ -126,15 +126,26 @@ myApp.factory('questionData', ['$http',  function($http) {
 	};  
 	
 	questionObject.setFavoriteQuestion = function(){
-		return (promise_questionFavorite = questionAPICall(promise_questionFavorite, "https://api.stackexchange.com/2.2/questions/"+ questionID +"?order=desc&filter=!)rCcH9YBU.wsVQxBWq.X&sort=activity&site=stackoverflow&callback=JSON_CALLBACK"));
+		if(!promise_questionFavorite){			
+			var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite&callback=JSON_CALLBACK";
+			promise_questionFavorite = $http.jsonp(url_to_search).success(function(data){
+				console.error(data);
+				return data;
+			}).error(function(data){
+				console.error(data);
+			});	
+		}
+		console.error("End of the day, this is the cache object: ", promise_questionFavorite);
+		return promise_questionFavorite;
 	};    
       
 	function questionAPICall(promiseData, url){
 		if(!promiseData || url != lastSearchUrl){			
 			lastSearchUrl = url;
 			promiseData = $http.jsonp(url).success(function(data){
+				console.error(data);
 				return data;
-			});	
+			});
 		}
 		console.error("End of the day, this is the cache object: ", promiseData);
 		return promiseData;

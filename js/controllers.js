@@ -85,6 +85,14 @@ myApp.controller('QuestionController', ['questionData', '$scope', '$routeParams'
   	  				console.error(this.questionInfo);
   	  			}.bind(this)
   	  		);
+  	  	};  	  	
+  	  	
+  	  	this.setFavorite = function(){
+  	  		questionData.setFavoriteQuestion().success(
+  	  			function(data){
+  	  				this.favoriteInfo = data;
+  	  			}.bind(this)
+  	  		);
   	  	};
 }]);
 
@@ -113,11 +121,7 @@ myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$
   	  			}.bind(this)
   	  		);
   	  	};
-  	  	
-  	  	this.setFavorite = function(){
-  	  		
-  	  	}
-  	  	
+  	  	  	  	
   	  	//Run this request initially to load the default search settings.
   	  	this.getSearchInfo.bind(this)();
 }]);

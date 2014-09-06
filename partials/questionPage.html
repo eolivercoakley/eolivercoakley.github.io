@@ -3,9 +3,9 @@
 <!--Title Section -->
 <div class="question_page_container">
 	<div class="titlePanel">
-	  <h3 class="question_title">{{questionData.questionInfo.title}}</h3> <div class="question_favorite_icon">[[STAR]]</div> 
+	  <h3 class="question_title">{{questionData.questionInfo.title}}</h3> <div class="question_favorite_icon">[[STAR]]{{questionData.favoriteInfo}}</div> 
 	</div>
-	
+	<button ng-click="questionData.setFavorite()">Add as a favorite</button>
 	<br>
 	
 	<!-- Question's Body  -->
@@ -19,7 +19,7 @@
 	  	
 	  	
 				  <div class="question_user_info">
-						<img class="media-object question_user_pic avatar_size" src={{questionData.questionInfo.owner.profile_image}} alt={{questionData.questionInfo.owner.display_name}}>
+						<img class="media-object question_user_pic avatar_size" src={{questionData.questionInfo.owner.profile_image}}>
 		    			<h4 class="media-heading answer_user">{{questionData.questionInfo.owner.display_name}}</h4>
 			<span class="user_date"> {{questionData.questionInfo.creation_date + "000" | date:'medium'}}</span>	
 				  </div>
@@ -32,7 +32,7 @@
 			<div ng-repeat="comment in questionData.questionInfo.comments">
 			<div class="media panel-body">
 		  <div class="pull-left">
-		    <img class="media-object avatar_size" src={{comment.owner.profile_image}} alt={{comment.owner.display_name}}>
+		    <img class="media-object avatar_size" src={{comment.owner.profile_image}}>
 		  </div>		
 		  <div class="media-body">
 		  <div class="question_user_and_score_bar">
@@ -53,7 +53,7 @@
 	<div class="panel panel-default all_answers_panel" ng-repeat="answer in questionData.questionInfo.answers">
 		<div class="media panel-body">
 		  <div class="pull-left">
-		    <img class="media-object avatar_size" src={{answer.owner.profile_image}} alt={{answer.owner.display_name}}>
+		    <img class="media-object avatar_size" src="{{answer.owner.profile_image}}">
 		  </div>	  
 		  <div class="media-body">
 		  <div class="question_user_and_score_bar">
@@ -73,7 +73,7 @@
 			<div class="panel panel-default">
 		    	<div class="media panel-body">
 				  <div class="pull-left">
-						<img class="media-object avatar_size" src={{comment.owner.profile_image}} alt={{comment.owner.display_name}}>
+						<img class="media-object avatar_size" src="{{comment.owner.profile_image}}">
 				  </div>
 				  <div class="media-body">
 		  <div class="question_user_and_score_bar">
