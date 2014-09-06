@@ -127,12 +127,12 @@ myApp.factory('questionData', ['$http',  function($http) {
 	
 	questionObject.setFavoriteQuestion = function(){
 		if(!promise_questionFavorite){			
-			var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite&callback=JSON_CALLBACK";
+			var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite";
 			promise_questionFavorite = $http.jsonp(url_to_search).success(function(data){
 				console.error(data);
 				return data;
-			}).error(function(data){
-				console.error(data);
+			}).error(function(){
+				console.error(arguments);
 			});	
 		}
 		console.error("End of the day, this is the cache object: ", promise_questionFavorite);
