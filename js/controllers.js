@@ -92,6 +92,7 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  		questionData.setFavoriteQuestion().success(
   	  			function(data){
   	  				this.favoriteInfo = data;
+  	  				this.isFavorite();
   	  			}.bind(this)
   	  		);
   	  	};
