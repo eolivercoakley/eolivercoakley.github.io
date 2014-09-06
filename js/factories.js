@@ -49,7 +49,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	};	
 	
 	globalObject.addMultipleUserIDs = function(arrayOfIDs){
-		arrayOfIDs.forEach(globalObject.addUserFavoriteID(val));
+		arrayOfIDs.forEach(function(val){globalObject.addUserFavoriteID(val);});
 	};
 
 	globalObject.removeUserFavoriteID = function(favID){
