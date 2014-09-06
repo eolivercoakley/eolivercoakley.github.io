@@ -43,9 +43,11 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	};	
 
 	globalObject.addUserFavoriteID = function(favID){
+		console.error("attempt to add: ", favID);
 		if(userFavoriteQuestionIDs.indexOf(favID) != -1){
 			userFavoriteQuestionIDs.push(favID);			
 		}
+		console.error("After adding id, array is: ", userFavoriteQuestionIDs);
 	};	
 	
 	globalObject.getFavoriteIDArray = function(){
@@ -53,7 +55,11 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	};	
 	
 	globalObject.addMultipleUserIDs = function(arrayOfIDs){
-		arrayOfIDs.forEach(function(val){globalObject.addUserFavoriteID(val);});
+		arrayOfIDs.forEach(function(val){
+			console.error("Loading into the multi-val add array:", val);
+			globalObject.addUserFavoriteID(val);
+			}
+		);
 	};
 
 	globalObject.removeUserFavoriteID = function(favID){
