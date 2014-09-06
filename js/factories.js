@@ -110,7 +110,12 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 		if(!promiseData){
 			promiseData = $http.jsonp(url).success(function(data){
 				console.error(data);
-				
+				var arrayOfValidFavoriteIDs;
+				data.items.forEach(function(a){
+					arrayOfValidFavoriteIDs.push(a.question_id);
+				});
+				globalObject.addMultipleUserIDs(arrayOfValidFavoriteIDs);
+				console.error(arrayOfValidFavoriteIDs);
 				return data;
 			});
 		}
