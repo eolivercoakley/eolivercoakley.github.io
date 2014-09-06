@@ -127,7 +127,7 @@ myApp.factory('questionData', ['$http',  function($http) {
 	
 	questionObject.setFavoriteQuestion = function(){
 		if(!promise_questionFavorite){			
-			console.error("Setting a favorite!");
+			console.error("Setting a favorite2!");
 			var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite?site=stackoverflow";
 			/*promise_questionFavorite = $http.post(url_to_search, {key:'C8mLfFHVyj1TGEfdDQTEYw((',access_token:'EArpR8xOPPvkKzO6*nfbfg))',id:11541695,site:'stackoverflow'}).success(function(data){
 				console.error(data);
@@ -137,15 +137,17 @@ myApp.factory('questionData', ['$http',  function($http) {
 			});	*/
 			
 			promise_questionFavorite = $http({
-                    method: "post",
+                    method: "POST",
                     url: url_to_search,
                     data: $.param({
                         id:"11541695",
 						key:"C8mLfFHVyj1TGEfdDQTEYw((",
 						access_token:"EArpR8xOPPvkKzO6*nfbfg))",
+						site:"http://eolivercoakley.github.io",
+						preview : false
                     }),
                     headers: {
-                    	"Content-Type": "application/x-www-form-urlencoded"                    	
+                    	"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"                    	
                     }
                 }).success(function(data){
 				console.error(data);
