@@ -44,7 +44,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 
 	globalObject.addUserFavoriteID = function(favID){
 		console.error("attempt to add: ", favID);
-		if(userFavoriteQuestionIDs.indexOf(favID) != -1){
+		if(userFavoriteQuestionIDs.indexOf(favID) === -1){
 			userFavoriteQuestionIDs.push(favID);			
 		}
 		console.error("After adding id, array is: ", userFavoriteQuestionIDs);
