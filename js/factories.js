@@ -119,7 +119,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 					arrayOfValidFavoriteIDs.push(a.question_id);
 				});
 				globalObject.addMultipleUserIDs(arrayOfValidFavoriteIDs);
-				console.error(globalObject);
+				console.error(globalObject.getFavoriteIDArray());
 				return data;
 			});
 		}
