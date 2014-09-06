@@ -48,6 +48,10 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 		}
 	};	
 	
+	globalObject.getFavoriteIDArray = function(){
+		return userFavoriteQuestionIDs;
+	};	
+	
 	globalObject.addMultipleUserIDs = function(arrayOfIDs){
 		arrayOfIDs.forEach(function(val){globalObject.addUserFavoriteID(val);});
 	};
@@ -115,7 +119,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 					arrayOfValidFavoriteIDs.push(a.question_id);
 				});
 				globalObject.addMultipleUserIDs(arrayOfValidFavoriteIDs);
-				console.error(arrayOfValidFavoriteIDs);
+				console.error(globalObject);
 				return data;
 			});
 		}
