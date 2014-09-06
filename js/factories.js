@@ -82,7 +82,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
     	return (promise_userTimelineInfo = generalAPICall(promise_userTimelineInfo, "https://api.stackexchange.com/2.2/me/timeline?site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&callback=JSON_CALLBACK"));
 	};  
     
-	allUserInfo.getUserFavorites = function(){
+	allUserInfo.getUserFavorites = function(){		
     	return (promise_userFavorites = generalAPICall(promise_userFavorites, "https://api.stackexchange.com/2.2/me/favorites?order=desc&sort=activity&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&callback=JSON_CALLBACK"));
 	}; 
     

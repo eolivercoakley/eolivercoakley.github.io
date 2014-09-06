@@ -67,6 +67,7 @@ myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$h
   	  		(function(iter){
 		  	  	allUserData[userDataToLoad[iter].functionName]().success(
 		  			(function(data){
+		  				console.error(data);
 		  	  			this[userDataToLoad[iter].tableValue] = data.items[0];
 		  	  	}.bind(this)));  	  			
   	  		}).bind(this)(i);
