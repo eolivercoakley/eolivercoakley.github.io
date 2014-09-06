@@ -186,6 +186,7 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
                     	"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"                    	
                     }
                 }).success(function(data){
+                	globalObject.addUserFavoriteID(questionID);
 				return data;
 			}).error(function(data){
 				console.error(arguments);
