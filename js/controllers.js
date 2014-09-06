@@ -74,8 +74,8 @@ myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$h
 }]);
 
 
-myApp.controller('QuestionController', ['questionData', '$scope', '$routeParams', '$http',
-  function(questionData, $scope, $routeParams, $http) {  	
+myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope', '$routeParams', '$http',
+  function(globalObject, questionData, $scope, $routeParams, $http) {  	
   	
   	  	//Initial Load
   	  	if(questionData.getQuestionID()){
@@ -95,6 +95,8 @@ myApp.controller('QuestionController', ['questionData', '$scope', '$routeParams'
   	  			}.bind(this)
   	  		);
   	  	};
+  	  	
+  	  	this.isFavorite = (globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1);
 }]);
 
 
