@@ -101,7 +101,7 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  		console.error(globalObject.getFavoriteIDArray());
   	  		console.error(questionData.getQuestionID());
   	  		return (globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1);
-  	  	};
+  	  	}();
   	  		
 }]);
 
