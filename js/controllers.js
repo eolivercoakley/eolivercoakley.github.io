@@ -88,7 +88,7 @@ myApp.controller('QuestionController', ['questionData', '$scope', '$routeParams'
   	  	};  	  	
   	  	
   	  	this.setFavorite = function(){
-  	  		console.error("Neh?");
+  	  		console.error("Setting a favorite!");
   	  		questionData.setFavoriteQuestion().success(
   	  			function(data){
   	  				this.favoriteInfo = data;
