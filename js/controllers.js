@@ -96,7 +96,13 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  		);
   	  	};
   	  	
-  	  	this.isFavorite = (globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1);
+  	  	this.isFavorite = function(){
+  	  		console.error("So, couple of variables:");
+  	  		console.error(globalObject.getFavoriteIDArray());
+  	  		console.error(questionData.getQuestionID());
+  	  		return (globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1);
+  	  	};
+  	  		
 }]);
 
 
