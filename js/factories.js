@@ -153,7 +153,6 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
   	var questionObject = {};	
 	var questionID = 11541695;
 	var promise_questionInfo;	
-	var promise_questionFavorite;
 	var lastSearchUrl = "";
 	var isFavorite = false;
 	
@@ -170,30 +169,27 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
 	};  
 	
 	questionObject.setFavoriteQuestion = function(){
-		if(!promise_questionFavorite){			
-			var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite";			
-			promise_questionFavorite = $http({
-                    method: "POST",
-                    url: url_to_search,
-                    data: $.param({
-                        id: questionID,
-						key:"C8mLfFHVyj1TGEfdDQTEYw((",
-						access_token: globalObject.getAccessToken(),
-						site:"stackoverflow",
-						preview : false
-                    }),
-                    headers: {
-                    	"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"                    	
-                    }
-                }).success(function(data){
-                	globalObject.addUserFavoriteID(questionID);
-				return data;
-			}).error(function(data){
-				console.error(arguments);
-			});
-		}
-		return promise_questionFavorite;
-	};    
+		var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite";			
+		return promise_questionFavorite = $http({
+                method: "POST",
+                url: url_to_search,
+                data: $.param({
+                    id: questionID,
+					key:"C8mLfFHVyj1TGEfdDQTEYw((",
+					access_token: globalObject.getAccessToken(),
+					site:"stackoverflow",
+					preview : false
+                }),
+                headers: {
+                	"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"                    	
+                }
+            }).success(function(data){
+            	globalObject.addUserFavoriteID(questionID);
+			return data;
+		}).error(function(data){
+			console.error(arguments);
+		});
+	};
       
 	function questionAPICall(promiseData, url){
 		if(!promiseData || url != lastSearchUrl){			
