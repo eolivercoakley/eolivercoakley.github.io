@@ -98,6 +98,7 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  	};
   	  	
   	  	this.isFavorite = function(){
+  	  		console.error("So many favorites!");
   	  		return globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1;
   	  	};
   	  		
