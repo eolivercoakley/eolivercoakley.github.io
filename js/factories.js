@@ -8,6 +8,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
     var globalObject = {}; //Object to store the access token 
 	var locationObject = {}; //Used to store the auth data passed back via location.hash	
 	var accessToken;
+	var userFavoriteQuestionIDs = [];
 	
 	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
 	(function getDataPassedBackViaLogin(){
@@ -41,6 +42,22 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 		return accessToken;
 	};	
 
+	globalObject.addUserFavoriteID = function(favID){
+		if(userFavoriteQuestionIDs.indexOf(favID) != -1){
+			userFavoriteQuestionIDs.push(favID);			
+		}
+	};	
+	
+	globalObject.addMultipleUserIDs = function(arrayOfIDs){
+		arrayOfIDs.forEach(globalObject.addUserFavoriteID(val));
+	};
+
+	globalObject.removeUserFavoriteID = function(favID){
+		if(userFavoriteQuestionIDs.indexOf(favID) > -1){
+			userFavoriteQuestionIDs.splice(userFavoriteQuestionIDs.indexOf(favID), 1);			
+		}
+	};
+
     return globalObject;
 }]);
 
@@ -68,7 +85,6 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
   	var allUserInfo = {};	
   	var accessToken = globalObject.getAccessToken() || "(mZUdl3i(U*5(q*jl*SNkw))";
   	var promise_userInfo, promise_userBadgesInfo, promise_userTimelineInfo, promise_userFavorites, promise_userTagCloudInfo;
-
   	  	
     allUserInfo.getUserInfo = function(){
 		return (promise_userInfo = generalAPICall(promise_userInfo, "https://api.stackexchange.com/2.2/me?order=desc&sort=reputation&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&callback=JSON_CALLBACK"));
@@ -83,12 +99,24 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 	};  
     
 	allUserInfo.getUserFavorites = function(){		
-    	return (promise_userFavorites = generalAPICall(promise_userFavorites, "https://api.stackexchange.com/2.2/me/favorites?order=desc&sort=activity&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&callback=JSON_CALLBACK"));
+    	return (promise_userFavorites = userFavoritesRequest(promise_userFavorites, "https://api.stackexchange.com/2.2/me/favorites?order=desc&sort=activity&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&callback=JSON_CALLBACK"));
 	}; 
     
 	allUserInfo.getUserTagCloudInfo = function(){
     	return (promise_userTagCloudInfo = generalAPICall(promise_userTagCloudInfo, "https://api.stackexchange.com/2.2/me/tags?order=desc&sort=popular&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&callback=JSON_CALLBACK"));
 	};  
+
+	function userFavoritesRequest(promiseData, url){
+		if(!promiseData){
+			promiseData = $http.jsonp(url).success(function(data){
+				console.error(data);
+				
+				return data;
+			});
+		}
+		console.error("End of the day, this is the cache object: ", promiseData);
+		return promiseData;
+	}
 
 	function generalAPICall(promiseData, url){
 		if(!promiseData){
@@ -110,8 +138,9 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
   	var questionObject = {};	
 	var questionID = 11541695;
 	var promise_questionInfo;	
-	var promise_questionFavorite;	
+	var promise_questionFavorite;
 	var lastSearchUrl = "";
+	var isFavorite = false;
 	
 	questionObject.getQuestionAPIData = function(){
     	return (promise_questionInfo = questionAPICall(promise_questionInfo, "https://api.stackexchange.com/2.2/questions/"+ questionID +"?order=desc&filter=!)rCcH9YBU.wsVQxBWq.X&sort=activity&site=stackoverflow&callback=JSON_CALLBACK"));
