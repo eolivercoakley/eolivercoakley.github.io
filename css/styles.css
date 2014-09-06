@@ -3,6 +3,7 @@ body{
 	top: 0px;
 	left: 0px;
 	width: 100%;
+	background-color: rgb(212,212,212);
 }
 
 .globalHeader{
@@ -38,6 +39,7 @@ body{
 }
 
 .topNavBar{
+	background-color: 
 }
 
 .titlePanel{
@@ -69,6 +71,10 @@ body{
 
 .answer_score{	
 	float:right;
+}
+
+.answer_comments_panel{
+	background-color: rgba(230,230,230,1);
 }
 
 .user_date{

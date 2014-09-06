@@ -127,13 +127,33 @@ myApp.factory('questionData', ['$http',  function($http) {
 	
 	questionObject.setFavoriteQuestion = function(){
 		if(!promise_questionFavorite){			
+			console.error("Setting a favorite!");
 			var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite";
-			promise_questionFavorite = $http.jsonp(url_to_search).success(function(data){
+			/*promise_questionFavorite = $http.post(url_to_search, {key:'C8mLfFHVyj1TGEfdDQTEYw((',access_token:'EArpR8xOPPvkKzO6*nfbfg))',id:11541695,site:'stackoverflow'}).success(function(data){
 				console.error(data);
 				return data;
 			}).error(function(){
 				console.error(arguments);
-			});	
+			});	*/
+			
+			promise_questionFavorite = $http({
+                    method: "post",
+                    url: url_to_search,
+                    data: {
+                        id:"11541695",
+						key:"C8mLfFHVyj1TGEfdDQTEYw((",
+						access_token:"EArpR8xOPPvkKzO6*nfbfg))",
+						site:"http://eolivercoakley.github.io/",
+                    },
+                    headers: {
+                    	"Content-Type": "application/x-www-form-urlencoded"                    	
+                    }
+                }).success(function(data){
+				console.error(data);
+				return data;
+			}).error(function(){
+				console.error(arguments);
+			});
 		}
 		console.error("End of the day, this is the cache object: ", promise_questionFavorite);
 		return promise_questionFavorite;

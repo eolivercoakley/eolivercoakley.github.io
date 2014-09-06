@@ -4,10 +4,9 @@
 <div class="question_page_container">
 	<div class="titlePanel">
 	  <h3 class="question_title">{{questionData.questionInfo.title}}</h3> <div class="question_favorite_icon">[[STAR]]{{questionData.favoriteInfo}}</div> 
-	</div>
-	<button ng-click="questionData.setFavorite()">Add as a favorite</button>
-	<br>
-	
+	</div>	
+	<button ng-click="questionData.setFavorite()">Favorite</button>
+	<br>​
 	<!-- Question's Body  -->
 	
 	<div class="panel panel-default">
@@ -70,7 +69,7 @@
 			</div>	
 		    <div ng-repeat="comment in answer.comments">
 		    	
-			<div class="panel panel-default">
+			<div class="panel panel-default answer_comments_panel">
 		    	<div class="media panel-body">
 				  <div class="pull-left">
 						<img class="media-object avatar_size" src="{{comment.owner.profile_image}}">
