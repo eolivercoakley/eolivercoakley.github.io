@@ -7,7 +7,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 
     var globalObject = {}; //Object to store the access token 
 	var locationObject = {}; //Used to store the auth data passed back via location.hash	
-	var accessToken = null;//"9UOfQK7ZNY6XbiyYS97S3Q))"; //debug for now @TODO - REMOVE THIS
+	var accessToken = "9UOfQK7ZNY6XbiyYS97S3Q))"; //debug for now @TODO - REMOVE THIS
 	var userFavoriteQuestionIDs = [];
 	
 	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
@@ -107,7 +107,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 	};  
 
     allUserInfo.getUserBadgesInfo = function(){
-    	return (promise_userBadgesInfo = generalAPICall(promise_userBadgesInfo, "https://api.stackexchange.com/2.2/me/badges?order=desc&sort=rank&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&callback=JSON_CALLBACK"));
+    	return (promise_userBadgesInfo = generalAPICall(promise_userBadgesInfo, "https://api.stackexchange.com/2.2/me/badges?order=desc&sort=rank&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + accessToken + "&filter=!9YdnSNoYZ&callback=JSON_CALLBACK"));
 	};    
 
     allUserInfo.getUserTimelineInfo = function(){
@@ -141,6 +141,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 	function generalAPICall(promiseData, url){
 		if(!promiseData){
 			promiseData = $http.jsonp(url).success(function(data){
+                console.error(data);
 				return data;
 			});	
 		}
