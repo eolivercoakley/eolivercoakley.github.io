@@ -59,10 +59,6 @@ pre code{
 	margin-bottom: 10px;
 }
 
-.topNavBar{
-	background-color: 
-}
-
 .titlePanel{
 	width: 100%;
 }
@@ -156,8 +152,6 @@ pre code{
 
 @font-face{font-family:"Blizzard";font-style:normal;font-weight:300;src:local("Blizzard Light"),local("Blizzard-Light"),url("../fonts/blizzard-light.3ARY7.woff") format("woff")}
 @font-face{font-family:"Blizzard";font-style:normal;font-weight:400;src:local("Blizzard"),local("Blizzard"),url("../fonts/blizzard-regular.3GHNU.woff") format("woff")}
-@font-face{font-family:"Blizzard";font-style:italic;font-weight:400;src:local("Blizzard Italic"),local("Blizzard-Italic"),url("../fonts/blizzard-regular-italic.1jLGm.woff") format("woff")}
-@font-face{font-family:"Blizzard";font-style:normal;font-weight:700;src:local("Blizzard Bold"),local("Blizzard-Bold"),url("../fonts/blizzard-bold.2ZxWn.woff") format("woff")}
 input,button,select,select optgroup,select option,textarea{font-family:"Blizzard","Arial","Helvetica",sans-serif}
 .tooltipster-default .tooltipster-content{font-family:"Blizzard","Arial","Helvetica",sans-serif;font-size:11px;line-height:13px;padding:8px 10px;overflow:hidden}
 
@@ -254,5 +248,44 @@ p.page-footer-row{
 
 .tagCloudHolder{
 	width: 80%;
+    margin: 0 auto;
 }
 
+
+.highlight_button_background{
+    background-color: rgba(255,255,255,0.1);
+}
+
+.highlight_button_upvote{
+    display: inline-block;
+    width: 16px;
+    height: 10px;
+    zoom: 1;
+    overflow: hidden;
+    background-image: url("../img/sprite-16-white.2FdYO.png");
+    background-repeat: no-repeat;
+    background-position: -80px -308px;
+    text-indent: -9999px;
+    cursor: pointer;
+    border-image-width: 0;
+    opacity: .2;
+    -webkit-transition: opacity,0.2s;
+    transition: opacity .2s;
+}
+
+.highlight_button_downvote{
+    display: inline-block;
+    width: 16px;
+    height: 10px;
+    zoom: 1;
+    overflow: hidden;
+    background-image: url("../img/sprite-16-white.2FdYO.png");
+    background-repeat: no-repeat;
+    background-position: -64px -308px;
+    text-indent: -9999px;
+    cursor: pointer;
+    border-image-width: 0;
+    opacity: .2;
+    -webkit-transition: opacity,0.2s;
+    transition: opacity .2s;
+}
