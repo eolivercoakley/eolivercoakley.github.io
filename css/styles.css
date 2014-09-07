@@ -230,3 +230,29 @@ p.page-footer-row{
 	margin-bottom: 10px;
 }
 
+
+.login-panel-text{
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+}
+.login_page_button_container{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 181px;
+}
+
+.tagCloud{
+    float: left;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    display: inline;
+    margin-right: 8px;
+}
+
+.tagCloudHolder{
+	width: 80%;
+}
+

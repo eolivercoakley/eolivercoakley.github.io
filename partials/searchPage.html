@@ -26,25 +26,42 @@
 	</div>
 </div>
         <br>
-    <div ng-repeat="(key, question) in searchData.searchInfo | orderBy:sortOrder">
-        <div class="panel panel-default">
-        <div class="media panel-body" ng-click="searchData.loadQuestion(question.question_id)">
-            <a><p class="question_title">{{question.title}}</p></a>
+<div ng-repeat="(key, question) in searchData.searchInfo | orderBy:sortOrder">
+	<div class="panel panel-default">
+		<div class="media panel-body" ng-click="searchData.loadQuestion(question.question_id)">
+			<span>Title: <span ng-bind-html="validateSnippet(question.title)"></span><br></span>
 			<div class="question_metrics">
-	            <span>Votes: {{question.score}}</span> | 
-    	        <span>Views: {{question.view_count}}</span> | 
-        	    <span>Answers: {{question.answer_count}}</span>
+				<span>Votes: {{question.score}}</span> | 
+				<span>Views: {{question.view_count}}</span> | 
+				<span>Answers: {{question.answer_count}}</span>
 			</div>
 			<div class="question_footer">
 				<div class=tag_list>
-		            <span ng-repeat="tag in question.tags">
+					<span ng-repeat="tag in question.tags">
 						<span class="topic_tag">{{tag}}</span>
 					</span>
 				</div>
-    	        <span class="user_date">Date: {{question.creation_date + "000" | date:'medium'}}</span><br>
+				<span class="user_date">Date: {{question.creation_date + "000" | date:'medium'}}</span><br>
 			</div>
-        </div>
-            </div>
-        <br>
-    </div>
+		</div>
+	</div>
+	<br>
+</div>
+
 <!--/div-->
+<div class="tagCloudHolder panel panel-default" >
+    <div class="media panel-body">
+        <div id="tagging">
+            <a class="tagCloud" ng-repeat="question in searchData.searchInfo" ng-click="searchData.loadQuestion(question.question_id)"
+               rel="{{question.view_count}}" ng-bind-html="validateSnippet(question.title)">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    $.fn.tagcloud.defaults = {
+        size: {start: 14, end: 24, unit: 'px'},
+        color: {start: '#fff', end: '#2a6496'}
+    };
+</script>

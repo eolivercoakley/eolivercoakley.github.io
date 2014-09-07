@@ -23,3 +23,9 @@ myApp.config(['$routeProvider',
 				redirectTo: '/login'
 			});
 }]);
+
+//TagCloud Settings
+$.fn.tagcloud.defaults = {
+    size: {start: 14, end: 24, unit: 'pt'},
+    color: {start: '#fff', end: '#2a6496'}
+};

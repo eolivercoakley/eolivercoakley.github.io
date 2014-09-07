@@ -93,7 +93,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 	console.error("Building out the user data request...");
   	
   	var allUserInfo = {};	
-  	var accessToken = globalObject.getAccessToken() || "(mZUdl3i(U*5(q*jl*SNkw))";
+  	var accessToken = globalObject.getAccessToken() || "Sikct*IjHJi4P(VqMN0gSg))";
   	var promise_userInfo, promise_userBadgesInfo, promise_userTimelineInfo, promise_userFavorites, promise_userTagCloudInfo;
   	  	
     allUserInfo.getUserInfo = function(){

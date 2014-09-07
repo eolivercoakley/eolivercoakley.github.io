@@ -4,8 +4,8 @@
 
 var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies', 'ngSanitize']);
 
-myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', '$http', '$location',
-  function(globalObject, $scope, $routeParams, $http, $location) {
+myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', '$http', '$location', '$sce',
+  function(globalObject, $scope, $routeParams, $http, $location, $sce) {
       $scope.isAuthenticated = globalObject.getAccessToken();
       
       //Allow the global header widget's buttons to navigate to the other subsections.
@@ -13,6 +13,10 @@ myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', 
 	      	location.href = "#/" + loc;
       };
       $scope.$location = $location;
+
+      $scope.validateSnippet = function(snippet) {
+          return $sce.trustAsHtml(snippet);
+      };
 }]);
 
 myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', '$scope', '$routeParams', '$http',
@@ -32,8 +36,8 @@ myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', 
 }]);
 
 
-myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$http',
-  function(allUserData, $scope, $routeParams, $http) {  
+myApp.controller('HomeController', ['searchData', 'allUserData', '$scope', '$routeParams', '$http',
+  function(searchData, allUserData, $scope, $routeParams, $http) {
   	  	
   	  	//Load all data into respective widgets
   	  	//General User Data
@@ -68,9 +72,21 @@ myApp.controller('HomeController', ['allUserData', '$scope', '$routeParams', '$h
 		  	  	allUserData[userDataToLoad[iter].functionName]().success(
 		  			(function(data){
 		  	  			this[userDataToLoad[iter].tableValue] = data.items;
+                        if(userDataToLoad[iter].tableValue == "tagCloudInfo"){
+                            setTimeout(function() {
+                                $('#tagging a').tagcloud();
+                            },1000);
+                        }
 		  	  	}.bind(this)));  	  			
   	  		}).bind(this)(i);
-  	  	}		
+  	  	}
+
+      this.setSearchQuery = function(query){
+          searchData.setSearchTag(query);
+          location.href = "#/search";
+      }
+
+
 }]);
 
 
@@ -102,8 +118,8 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
 
 
 myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$routeParams', '$http',
-  function(searchData, questionData, $scope, $routeParams, $http) {  	
-  	  	
+  function(searchData, questionData, $scope, $routeParams, $http) {
+
   	  	  	  	
   	  	//Set the question ID and now load the new page.
   	  	this.loadQuestion = function(questionInfo){
@@ -122,6 +138,9 @@ myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$
   	  		searchData.getSearchAPIData().success(
   	  			function(data){
   	  				this.searchInfo = data.items;
+                    setTimeout(function() {
+                        $('#tagging a').tagcloud();
+                    },1000);
   	  			}.bind(this)
   	  		);
   	  	};

@@ -1,34 +1,95 @@
-<table>
-	<br><br>Basic User Info:
-	<tr ng-repeat="(key, value) in homeData.userInfo">
-	  <td> {{key}} </td> <td> {{ value }} </td>
-	</tr>
-</table>
+<!--User Info Block-->
+        User Info:
+<div ng-repeat="(key, _userInfo) in homeData.userInfo">
+    <div class="panel panel-default">
+        <div class="media panel-body">
+             <img src={{_userInfo.profile_image}}></img><br>
+            <span ng-show="_userInfo.display_name">Name: {{_userInfo.display_name}}<br></span>
+            <span ng-show="_userInfo.creation_date">Member Since: {{_userInfo.creation_date + "000" | date:'MM/dd/yyyy'}}<br></span>
+            <span ng-show="_userInfo.reputation">Reputation: {{_userInfo.reputation}}<br></span>
+            <span ng-show="_userInfo.account_id">Account ID: {{_userInfo.account_id}}<br></span>
+            <span ng-show="_userInfo.age">Age: {{_userInfo.age}}<br></span>
+            <span ng-show="_userInfo.location">Location: {{_userInfo.location}}<br></span>
+            <span ng-show="_userInfo.website_url">Website: <a href="{{_userInfo.website_url}}">{{_userInfo.website_url}}</a><br></span>
+        </div>
+    </div>
+</div>
 
-<table>
+    <!--table>
 	<br><br>Badges Info:
 	<tr ng-repeat="(key, value) in homeData.badgesInfo">
 	  <td> {{key}} </td> <td> {{ value }} </td>
 	</tr>
-</table>
+</table-->
 
-<table>
-	<br><br>Timeline Info:
+<!--Badges Info Block-->
+        Badges:
+<div ng-repeat="(key, _badgesInfo) in homeData.badgesInfo | limitTo : 3">
+    <div class="panel panel-default">
+        <div class="media panel-body">
+            <span>Badge Name: {{_badgesInfo.name}}<br></span>
+            <span>Rank: {{_badgesInfo.rank}}<br></span>
+        </div>
+    </div>
+</div>
+
+<!--table>
+	<br><br>
 	<tr ng-repeat="(key, value) in homeData.timelineInfo">
 	  <td> {{key}} </td> <td> {{ value }} </td>
 	</tr>
-</table>
+</table-->
 
-<table>
-	<br><br>Favorites Info:
+Timeline Info:
+<div ng-repeat="(key, _timelineInfo) in homeData.timelineInfo | limitTo : 6">
+    <div class="panel panel-default">
+        <div class="media panel-body">
+            <span ng-show="_timelineInfo.creation_date">Action Time: {{_timelineInfo.creation_date + "000" | date:'medium'}}<br></span>
+            <span>Action:{{_timelineInfo.timeline_type}}<br></span>
+            <span ng-show="_timelineInfo.timeline_type == 'badge'">Badge Earned: {{_timelineInfo.detail}}<br></span>
+            <span ng-show="_timelineInfo.timeline_type == 'answered'">Answered Question: {{_timelineInfo.title}}<br></span>
+            <span ng-show="_timelineInfo.timeline_type == 'commented'">User Commented: {{_timelineInfo.detail}}<br></span>
+        </div>
+    </div>
+</div>
+
+<!--table>
+	<br><br>
 	<tr ng-repeat="(key, value) in homeData.favoritesInfo">
 	  <td> {{key}} </td> <td> {{ value }} </td>
 	</tr>
-</table>
+</table-->
 
-<table>
+Favorites Info:
+<div ng-repeat="(key, _favoritesInfo) in homeData.favoritesInfo | limitTo : 6">
+    <div class="panel panel-default">
+        <div class="media panel-body">
+            <span ng-show="_favoritesInfo.creation_date">Created On: {{_favoritesInfo.creation_date + "000" | date:'medium'}}<br></span>
+            <span>Title: <span ng-bind-html="validateSnippet(_favoritesInfo.title)"></span><br></span>
+            <span>Link:{{_favoritesInfo.link}}<br></span>
+            <span>QuestionID:{{_favoritesInfo.question_id}}<br></span>
+            <span>Views:{{_favoritesInfo.view_count}}<br></span>
+            <span>Score:{{_favoritesInfo.score}}<br></span>
+            <span>Answers:{{_favoritesInfo.answer_count}}<br></span>
+            <span ng-show="_favoritesInfo.tags">Tags: {{_favoritesInfo.tags}}<br></span>
+        </div>
+    </div>
+</div>
+
+<!--table>
 	<br><br>Tag Cloud Info:
 	<tr ng-repeat="(key, value) in homeData.tagCloudInfo">
 	  <td> {{key}} </td> <td> {{ value }} </td>
 	</tr>
-</table>
+</table-->
+
+TAG CLOUD!
+<div class="tagCloudHolder panel panel-default" >
+    <div class="media panel-body">
+        <div id="tagging">
+            <span ng-repeat="(key, tag) in homeData.tagCloudInfo">
+                <a ng-click="homeData.setSearchQuery(tag.name)" rel={{tag.count}}>{{tag.name}}</a>
+            </span>
+        </div>
+    </div>
+</div>
