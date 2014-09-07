@@ -15,23 +15,22 @@
 			<button ng-click="searchData.getSearchInfo(searchData)">Search</button>
 		</form>
 	</div>
-	<div class="sort_by">
-		<input type="radio" ng-model="sortOrder" value="-view_count">Most Views</input> | 
-		<input type="radio" ng-model="sortOrder" value="-score">Most Votes</input> | 
-		<input type="radio" ng-model="sortOrder" value="score">Least Votes</input> | 
-		<input type="radio" class="sort_by_radio" ng-model="sortOrder" value="-creation_date">Newest</input> | 
-		<input type="radio" ng-model="sortOrder" value="+creation_date">Oldest</input> | 
-		<input type="radio" ng-model="sortOrder" value="+title">Title (A-Z)</input> | 
-		<input type="radio" ng-model="sortOrder" value="-title">Title (Z-A)</input>
+	<div class="sort_by"> 
+		Sort Results: 
+		<a href="" ng-click="sortOrder != 'title' ? reverse = false : reverse = !reverse; sortOrder = 'title'">Titles (Alphabetically)</a> |
+		<a href="" ng-click="sortOrder != 'answer_count' ? reverse = true : reverse = !reverse; sortOrder = 'answer_count'">Most Answers</a> |
+		<a href="" ng-click="sortOrder != 'score' ? reverse = false : reverse = !reverse; sortOrder = 'score'">Highest Scores</a> |
+		<a href="" ng-click="sortOrder != 'view_count' ? reverse = true : reverse = !reverse; sortOrder = 'view_count'">Most Views</a> |
+		<a href="" ng-click="sortOrder != 'creation_date' ? reverse = true : reverse = !reverse; sortOrder = 'creation_date'">Date Posted</a>
 	</div>
 </div>
         <br>
-<div ng-repeat="(key, question) in searchData.searchInfo | orderBy:sortOrder">
+<div ng-repeat="(key, question) in searchData.searchInfo | orderBy:sortOrder:reverse">
 	<div class="panel panel-default">
 		<div class="media panel-body" ng-click="searchData.loadQuestion(question.question_id)">
 			<span>Title: <span ng-bind-html="validateSnippet(question.title)"></span><br></span>
 			<div class="question_metrics">
-				<span>Votes: {{question.score}}</span> | 
+				<span>Score: {{question.score}}</span> | 
 				<span>Views: {{question.view_count}}</span> | 
 				<span>Answers: {{question.answer_count}}</span>
 			</div>

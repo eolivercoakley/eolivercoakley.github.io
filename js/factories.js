@@ -7,7 +7,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 
     var globalObject = {}; //Object to store the access token 
 	var locationObject = {}; //Used to store the auth data passed back via location.hash	
-	var accessToken;
+	var accessToken = "Sikct*IjHJi4P(VqMN0gSg))"; //debug for now @TODO - REMOVE THIS
 	var userFavoriteQuestionIDs = [];
 	
 	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
@@ -54,6 +54,15 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 		return userFavoriteQuestionIDs;
 	};	
 	
+	globalObject.isQuestionFavorite = function(questionID){
+		if(userFavoriteQuestionIDs.indexOf(questionID) === -1){
+			return false;
+		}
+		else{
+			return true;
+		}
+	};
+	
 	globalObject.addMultipleUserIDs = function(arrayOfIDs){
 		arrayOfIDs.forEach(function(val){
 			console.error("Loading into the multi-val add array:", val);
@@ -93,7 +102,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 	console.error("Building out the user data request...");
   	
   	var allUserInfo = {};	
-  	var accessToken = globalObject.getAccessToken() || "Sikct*IjHJi4P(VqMN0gSg))";
+  	var accessToken = globalObject.getAccessToken();
   	var promise_userInfo, promise_userBadgesInfo, promise_userTimelineInfo, promise_userFavorites, promise_userTagCloudInfo;
   	  	
     allUserInfo.getUserInfo = function(){
@@ -168,8 +177,12 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
 		return questionID;
 	};  
 	
-	questionObject.setFavoriteQuestion = function(){
-		var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite";			
+	questionObject.toggleFavoriteQuestion = function(){
+		var isFavorited = "";
+		
+		globalObject.isQuestionFavorite(questionID) ? isFavorited = "/undo" : "";
+		
+		var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite" + isFavorited;			
 		return promise_questionFavorite = $http({
                 method: "POST",
                 url: url_to_search,
@@ -184,7 +197,12 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
                 	"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"                    	
                 }
             }).success(function(data){
-            	globalObject.addUserFavoriteID(questionID);
+            	if(isFavorited === ""){
+            		globalObject.addUserFavoriteID(questionID);            		
+            	}
+            	else{
+            		globalObject.removeUserFavoriteID(questionID);            		
+            	}
 			return data;
 		}).error(function(data){
 			console.error(arguments);

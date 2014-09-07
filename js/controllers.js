@@ -84,7 +84,7 @@ myApp.controller('HomeController', ['searchData', 'allUserData', '$scope', '$rou
       this.setSearchQuery = function(query){
           searchData.setSearchTag(query);
           location.href = "#/search";
-      }
+      };
 
 
 }]);
@@ -105,7 +105,7 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  	
   	  	this.setFavorite = function(){
   	  		console.error("Setting a favorite!");
-  	  		questionData.setFavoriteQuestion().success(
+  	  		questionData.toggleFavoriteQuestion().success(
   	  			function(data){
   	  				this.favoriteInfo = data;
   	  				this.isFavorite = globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1;	
@@ -145,8 +145,8 @@ myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$
   	  		);
   	  	};
 
-        $scope.sortOrder = '-creation_date';
-
+        $scope.sortOrder = 'creation_date';
+		$scope.reverse = true;
   	  	//Run this request initially to load the default search settings.
   	  	this.getSearchInfo.bind(this)();
 }]);
