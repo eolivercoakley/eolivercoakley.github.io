@@ -45,56 +45,65 @@ myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', 
 }]);
 
 
-myApp.controller('HomeController', ['searchData', 'allUserData', '$scope', '$routeParams', '$http',
-  function(searchData, allUserData, $scope, $routeParams, $http) {
-  	  	
+myApp.controller('HomeController', ['globalObject', 'searchData', 'allUserData', '$scope', '$routeParams', '$http',
+  function(globalObject, searchData, allUserData, $scope, $routeParams, $http) {
+
   	  	//Load all data into respective widgets
   	  	//General User Data
-  	  	
+
   	  	var userDataToLoad = [
   	  		{
 				"functionName"	: "getUserInfo",
-				"tableValue"	: "userInfo"				
+				"tableValue"	: "userInfo"
   	  		},
   	  		{
 				"functionName"	: "getUserBadgesInfo",
-				"tableValue"	: "badgesInfo"				
+				"tableValue"	: "badgesInfo"
   	  		},
   	  		{
 				"functionName"	: "getUserTimelineInfo",
-				"tableValue"	: "timelineInfo"				
+				"tableValue"	: "timelineInfo"
   	  		},
   	  		{
 				"functionName"	: "getUserFavorites",
-				"tableValue"	: "favoritesInfo"				
+				"tableValue"	: "favoritesInfo"
   	  		},
   	  		{
 				"functionName"	: "getUserTagCloudInfo",
-				"tableValue"	: "tagCloudInfo"				
+				"tableValue"	: "tagCloudInfo"
   	  		}
-  	  		
+
   		];
-  	  	
-  	  	//Closure to load all data into their respective widgets
-  	  	for(var i in userDataToLoad){
-  	  		(function(iter){
-		  	  	allUserData[userDataToLoad[iter].functionName]().success(
-		  			(function(data){
-		  	  			this[userDataToLoad[iter].tableValue] = data.items;
-                        if(userDataToLoad[iter].tableValue == "tagCloudInfo"){
-                            setTimeout(function() {
-                                $('#tagging a').tagcloud();
-                            },1000);
-                        }
-		  	  	}.bind(this)));  	  			
-  	  		}).bind(this)(i);
-  	  	}
+
+
+      //Auto redirect if login is valid. Shouldn't need this, as navigation won't allow the user to return to login
+      //after authentication, but prevents the user from directly inputting the url.
+      if(!globalObject.getAccessToken()){
+          location.href = "#/Login"
+          this.displayScreen = false;
+      }
+      else{
+          //Closure to load all data into their respective widgets
+          for(var i in userDataToLoad){
+              (function(iter){
+                  allUserData[userDataToLoad[iter].functionName]().success(
+                      (function(data){
+                          this.displayScreen = true;
+                          this[userDataToLoad[iter].tableValue] = data.items;
+                          if(userDataToLoad[iter].tableValue == "tagCloudInfo"){
+                              setTimeout(function() {
+                                  $('#tagging a').tagcloud();
+                              },1000);
+                          }
+                      }.bind(this)));
+              }).bind(this)(i);
+          }
+      }
 
       this.setSearchQuery = function(query){
           searchData.setSearchTag(query);
           location.href = "#/Search";
       };
-
 
 }]);
 
