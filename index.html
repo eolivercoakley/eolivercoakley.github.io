@@ -35,11 +35,11 @@
 				<div class="grid-75">
 					<div id="service">
 						<ul class="service-bar">
-							<li class="service-cell service-home">
-								<a href="" ng-show="isAuthenticated" ng-click="navigation('home')"></a>
+							<li class="service-cell service-home" ng-show="isAuthenticated">
+								<a href="" ng-click="navigation('home')"></a>
 							</li>
-							<li class="service-cell service-welcome">
-								<a href="" ng-show="!isAuthenticated" ng-click="navigation('login')">Log in</a> or <a href="https://stackoverflow.com/users/signup?returnurl=http%3A%2F%2Feolivercoakley.github.io%2F">Create an Account</a>
+							<li class="service-cell service-welcome" ng-show="!isAuthenticated">
+								<a href="" ng-click="navigation('login')">Log in</a> or <a href="https://stackoverflow.com/users/signup?returnurl=http%3A%2F%2Feolivercoakley.github.io%2F">Create an Account</a>
 							</li>
 							<li class="service-cell service-shop">
 								<a href="" class="service-link" ng-click="navigation('question')">Sample Question</a>
