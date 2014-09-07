@@ -49,7 +49,10 @@
 	
 	
 	<!-- Answers and Answer's Comments  -->
-	<h4>Answers: {{questionData.questionInfo.answer_count}} </h4>
+	<div class="answers-subheader">
+		<h4 class="answers-subheader">{{questionData.questionInfo.answer_count}} Answers</h4>
+	</div>
+ 
 	<div class="panel panel-default all_answers_panel" ng-repeat="answer in questionData.questionInfo.answers">
 		<div class="media panel-body">
 		  <div class="pull-left">

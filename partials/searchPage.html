@@ -3,10 +3,37 @@
 	<button ng-click="searchData.getSearchInfo(searchData)">Search</button>
 </form>
 
-<table ng-repeat="(key, question) in searchData.searchInfo">
+<!--table ng-repeat="(key, question) in searchData.searchInfo">
 	<br><br>Search Info:
 	<tr ng-repeat="(_key, value) in question" >
 	  <td> {{ _key }} </td> <td> {{ value }} </td>
 	</tr>
 	<td><button ng-click="searchData.loadQuestion(question.question_id)">Link to question with id: {{question.question_id}}</button></td>
-</table>
+</table-->
+
+<!--div class="panel panel-default"-->
+
+<div class="panel panel-default" ng-model="sortOrder">
+    <input type="radio" ng-model="sortOrder" value="-creation_date">Newest</input>
+    <input type="radio" ng-model="sortOrder" value="+creation_date">Oldest</input>
+    <input type="radio" ng-model="sortOrder" value="+title">Title (A-Z)</input>
+    <input type="radio" ng-model="sortOrder" value="-title">Title (Z-A)</input>
+    <input type="radio" ng-model="sortOrder" value="-score">Highest Score</input>
+    <input type="radio" ng-model="sortOrder" value="score">Lowest Score</input>
+    <input type="radio" ng-model="sortOrder" value="-view_count">Most Views</input>
+</div>
+        <br>
+    <div ng-repeat="(key, question) in searchData.searchInfo | orderBy:sortOrder">
+        <div class="panel panel-default">
+        <div class="media panel-body" ng-click="searchData.loadQuestion(question.question_id)">
+            <span>Title: {{question.title}}</span><br>
+            <span>Score: {{question.score}}</span>
+            <span>View: {{question.view_count}}</span>
+            <span>Answer: {{question.answer_count}}</span><br>
+            <span>Date: {{question.creation_date + "000" | date:'medium'}}</span><br>
+            <span>Tags: {{question.tags}}</span>
+        </div>
+            </div>
+        <br>
+    </div>
+<!--/div-->

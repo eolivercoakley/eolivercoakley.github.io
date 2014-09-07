@@ -5,7 +5,33 @@
 	    <meta charset="UTF-8">
 	    <title>EPIC Overflow</title>
 	    <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" media="all" href="css/common.min.3TpMn.css" />
+	    <!--[if gt IE 8]><!--><link rel="stylesheet" type="text/css" media="all" href="css/bnet-web.min.3p7Kw.css" /><!-- <![endif]-->
+	    <link rel="stylesheet" type="text/css" media="all" href="css/global.min.1vVDz.css" />
+	    
+	    <link rel="stylesheet" type="text/css" media="all" href="css/browse.min.0BONW.css" />
+	    
 	    <link rel="stylesheet" href="css/styles.css">
+	    <style>
+	    html {
+		    height: auto;
+		    min-width: 480px;
+	    }
+	    body {
+		    height: 100%;
+	    }
+	    html,
+	    body {
+		    background: #0f2a48 url("img/bnet-background-1280.0H4LX.jpg") no-repeat center -200px !important;
+	    }
+	    .body-content {
+		    background: none !important;
+	    }
+	    .navbar-static {
+		    background: #0f2a48 url("img/bnet-background-1280.0H4LX.jpg") no-repeat center 0 !important;
+	    }
+	    </style>
+
 	    <script src="js/jquery-2.1.1.min.js"></script>
 	    <script src="js/bootstrap.min.js"></script>
 	    <script src="bower_components/angular/angular.js"></script>
@@ -19,24 +45,52 @@
 	
 	<body ng-controller="GlobalController">
 	    
-	<div class="navbar-static topNavBar">
-		<!--The global header widget, containing links to the different subpages -->
-		<header class=" btn-group globalHeader">
-		  <button type="button" class="btn btn-default" ng-show="!isAuthenticated" ng-click="navigation('login')">Login</button>
-		  <button type="button" class="btn btn-default" ng-show="isAuthenticated" ng-click="navigation('home')">Home</button>
-		  <button type="button" class="btn btn-default" ng-click="navigation('question')">Sample Question</button>
-		  <button type="button" class="btn btn-default" ng-click="navigation('search')">Search</button>
+	<div class="navbar-static">
+		<header class="navbar header">
+			<div class="grid-container">
+				<div class="grid-25">
+					<a class="brand mark" href="/shop/en/">EPIC Overflow</a>
+				</div>
+				<div class="grid-75">
+					<div id="service">
+						<ul class="service-bar">
+							<li class="service-cell service-home">
+								<a href="" ng-show="isAuthenticated" ng-click="navigation('home')"></a>
+							</li>
+							<li class="service-cell service-welcome">
+								<a href="" ng-show="!isAuthenticated" ng-click="navigation('login')">Log in</a> or <a href="https://stackoverflow.com/users/signup?returnurl=http%3A%2F%2Feolivercoakley.github.io%2F">Create an Account</a>
+							</li>
+							<li class="service-cell service-shop">
+								<a href="" class="service-link" ng-click="navigation('question')">Sample Question</a>
+							</li>
+							<li class="service-cell service-account">
+								<a href="" class="service-link" tabindex="50" ng-click="navigation('search')">Search</a>
+							</li>
+						</ul>
+						<span class="clear"><!-- --></span>
+					</div>
+				</div>
+			</div>
 		</header>
-		
-		<div class="epicOverflowLogo">
-		EPIC OVERFLOW IMG		<br>
-		GOES HERE
-		</div>
-		<ol class="breadcrumb">{{$location.path()}}</ol>
-	</div> 
+		<nav class="navbar">
+			<div class="grid-container">
+				<div class="grid-50">
+					<ul class="breadcrumb">
+						<li>
+							<span class="breadcrumb-home">
+								<i class="icon-home"></i>
+								{{$location.path()}}
+							</span>
+							<span class="divider"><i class="icon-chevron-right icon-white"></i></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
 		<!--All of the subpages are loaded in the following view -->
-	    <div ng-view></div>
-	    
+		<div ng-view></div>
+		    
 	</body>
 
 </html>

@@ -125,7 +125,9 @@ myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$
   	  			}.bind(this)
   	  		);
   	  	};
-  	  	  	  	
+
+        $scope.sortOrder = '-creation_date';
+
   	  	//Run this request initially to load the default search settings.
   	  	this.getSearchInfo.bind(this)();
 }]);
