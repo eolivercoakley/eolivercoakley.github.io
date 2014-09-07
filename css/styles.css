@@ -1,18 +1,23 @@
+html {
+    height: auto;
+    min-width: 480px;
+	background: #0f2a48 url("../img/bnet-background-1920.3ooDe.jpg") no-repeat center -200px !important;
+}
+
 body{
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	width: 100%;
 	color: white;
-	background-color: rgb(212,212,212);
-        background: #0f2a48 url("img/bnet-background-1280.0H4LX.jpg") no-repeat center -200px !important;
+	background: #0f2a48 url("../img/bnet-background-1920.3ooDe.jpg") no-repeat center -200px !important;
 	font-family:"Blizzard","Arial","Helvetica",sans-serif;font-size:15px;line-height:20px
 }
 h3{
 	font-family:"Blizzard","Arial","Helvetica",sans-serif;font-size:24px;line-height:20px;
 }
 .navbar-static {
-	background: #0f2a48 url("img/bnet-background-1280.0H4LX.jpg") no-repeat center 0 !important;
+	background: #0f2a48 url("../img/bnet-background-1920.3ooDe.jpg") no-repeat center 0 !important;
 }
 
 pre code{
@@ -32,7 +37,7 @@ pre code{
 
 
 .question_page_container{
-	width: 90%;
+	width: 100%;
 	position: relative;
 	margin: 0 auto;
 	margin-top: 40px;
