@@ -1,12 +1,12 @@
 <!--User Info Block-->
-        User Info:
+<h2>User Profile</h2>
 <div ng-repeat="(key, _userInfo) in homeData.userInfo">
     <div class="panel panel-default">
         <div class="media panel-body">
-            <img src={{_userInfo.profile_image}}/><br>
+            <img src="{{_userInfo.profile_image}}"></img><br>
             <span ng-show="_userInfo.display_name">Name: {{_userInfo.display_name}}<br></span>
             <span ng-show="_userInfo.creation_date">Member Since: {{_userInfo.creation_date + "000" | date:'MM/dd/yyyy'}}<br></span>
-            <span ng-show="_userInfo.reputation">Reputation: {{_userInfo.reputation}}<br></span>
+            <span ng-show="_userInfo.reputation">Reputation: {{_userInfos.reputation}}<br></span>
             <span ng-show="_userInfo.account_id">Account ID: {{_userInfo.account_id}}<br></span>
             <span ng-show="_userInfo.age">Age: {{_userInfo.age}}<br></span>
             <span ng-show="_userInfo.location">Location: {{_userInfo.location}}<br></span>
@@ -15,15 +15,7 @@
     </div>
 </div>
 
-    <!--table>
-	<br><br>Badges Info:
-	<tr ng-repeat="(key, value) in homeData.badgesInfo">
-	  <td> {{key}} </td> <td> {{ value }} </td>
-	</tr>
-</table-->
-
-<!--Badges Info Block-->
-        Badges:
+<h2>Badges</h2>
 <div ng-repeat="(key, _badgesInfo) in homeData.badgesInfo | limitTo : 3">
     <div class="panel panel-default">
         <div class="media panel-body">
@@ -33,14 +25,7 @@
     </div>
 </div>
 
-<!--table>
-	<br><br>
-	<tr ng-repeat="(key, value) in homeData.timelineInfo">
-	  <td> {{key}} </td> <td> {{ value }} </td>
-	</tr>
-</table-->
-
-Timeline Info:
+<h2>User Timeline</h2>
 <div ng-repeat="(key, _timelineInfo) in homeData.timelineInfo | limitTo : 6">
     <div class="panel panel-default">
         <div class="media panel-body">
@@ -53,14 +38,7 @@ Timeline Info:
     </div>
 </div>
 
-<!--table>
-	<br><br>
-	<tr ng-repeat="(key, value) in homeData.favoritesInfo">
-	  <td> {{key}} </td> <td> {{ value }} </td>
-	</tr>
-</table-->
-
-Favorites Info:
+<h2>User Favorites</h2>
 <div ng-repeat="(key, _favoritesInfo) in homeData.favoritesInfo | limitTo : 6">
     <div class="panel panel-default">
         <div class="media panel-body">
@@ -75,13 +53,6 @@ Favorites Info:
         </div>
     </div>
 </div>
-
-<!--table>
-	<br><br>Tag Cloud Info:
-	<tr ng-repeat="(key, value) in homeData.tagCloudInfo">
-	  <td> {{key}} </td> <td> {{ value }} </td>
-	</tr>
-</table-->
 
 <h2>User Tags</h2>
 <div class="tagCloudHolder panel panel-default" >

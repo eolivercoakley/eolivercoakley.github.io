@@ -43,12 +43,10 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	};	
 
 	globalObject.addUserFavoriteID = function(favID){
-		console.error("attempt to add: ", favID);
 		if(userFavoriteQuestionIDs.indexOf(favID) === -1){
 			userFavoriteQuestionIDs.push(favID);			
 		}
-		console.error("After adding id, array is: ", userFavoriteQuestionIDs);
-	};	
+	};
 	
 	globalObject.getFavoriteIDArray = function(){
 		return userFavoriteQuestionIDs;
@@ -65,7 +63,6 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	
 	globalObject.addMultipleUserIDs = function(arrayOfIDs){
 		arrayOfIDs.forEach(function(val){
-			console.error("Loading into the multi-val add array:", val);
 			globalObject.addUserFavoriteID(val);
 			}
 		);
@@ -138,7 +135,6 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 				return data;
 			});
 		}
-		console.error("End of the day, this is the cache object: ", promiseData);
 		return promiseData;
 	}
 
@@ -148,7 +144,6 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 				return data;
 			});	
 		}
-		console.error("End of the day, this is the cache object: ", promiseData);
 		return promiseData;
 	}
 
@@ -205,7 +200,6 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
             	}
 			return data;
 		}).error(function(data){
-			console.error(arguments);
 		});
 	};
       
@@ -217,7 +211,6 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
 				return data;
 			});
 		}
-		console.error("End of the day, this is the cache object: ", promiseData);
 		return promiseData;
 	}  
         
@@ -247,13 +240,11 @@ myApp.factory('searchData', ['$http',  function($http) {
       
 	function searchAPICall(promiseData, url){
 		if(!promiseData || url != lastSearchUrl){
-			console.error("New search!");
 			lastSearchUrl = url;
 			promiseData = $http.jsonp(url).success(function(data){
 				return data;
 			});	
 		}
-		console.error("End of the day, this is the cache object: ", promiseData);
 		return promiseData;
 	}  
         
