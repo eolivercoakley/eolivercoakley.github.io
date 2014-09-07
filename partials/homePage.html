@@ -3,7 +3,7 @@
 <div ng-repeat="(key, _userInfo) in homeData.userInfo">
     <div class="panel panel-default">
         <div class="media panel-body">
-             <img src={{_userInfo.profile_image}}/><br>
+            <img src={{_userInfo.profile_image}}/><br>
             <span ng-show="_userInfo.display_name">Name: {{_userInfo.display_name}}<br></span>
             <span ng-show="_userInfo.creation_date">Member Since: {{_userInfo.creation_date + "000" | date:'MM/dd/yyyy'}}<br></span>
             <span ng-show="_userInfo.reputation">Reputation: {{_userInfo.reputation}}<br></span>
