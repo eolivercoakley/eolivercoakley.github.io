@@ -7,7 +7,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 
     var globalObject = {}; //Object to store the access token 
 	var locationObject = {}; //Used to store the auth data passed back via location.hash	
-	var accessToken = "";//"Sikct*IjHJi4P(VqMN0gSg))"; //debug for now @TODO - REMOVE THIS
+	var accessToken = "9UOfQK7ZNY6XbiyYS97S3Q))"; //debug for now @TODO - REMOVE THIS
 	var userFavoriteQuestionIDs = [];
 	
 	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
@@ -159,9 +159,8 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
 	var promise_questionInfo;	
 	var lastSearchUrl = "";
 	var isFavorite = false;
-	
 	questionObject.getQuestionAPIData = function(){
-    	return (promise_questionInfo = questionAPICall(promise_questionInfo, "https://api.stackexchange.com/2.2/questions/"+ questionID +"?order=desc&filter=!)rCcH9YBU.wsVQxBWq.X&sort=activity&site=stackoverflow&callback=JSON_CALLBACK"));
+    	return (promise_questionInfo = questionAPICall(promise_questionInfo, "https://api.stackexchange.com/2.2/questions/"+ questionID +"?order=desc&filter=!)rCcH9YBU.wsVQxBWq.X&sort=activity&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + globalObject.getAccessToken() + "&callback=JSON_CALLBACK"));
 	};	
 		
 	questionObject.setQuestionID = function(_questionID){
@@ -217,7 +216,7 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
     return questionObject;
 }]);
 
-myApp.factory('searchData', ['$http',  function($http) {
+myApp.factory('searchData', ['$http', 'globalObject', function($http, globalObject) {
 	console.error("Loading Search Model");
 	
   	var searchObject = {};	
@@ -227,7 +226,7 @@ myApp.factory('searchData', ['$http',  function($http) {
 	var lastSearchUrl = "";
 		
 	searchObject.getSearchAPIData = function(){		
-    	return (promise_searchInfo = searchAPICall(promise_searchInfo, "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=activity&q=" + searchQuery + "&closed=False&tagged=javascript&site=stackoverflow&callback=JSON_CALLBACK"));
+    	return (promise_searchInfo = searchAPICall(promise_searchInfo, "https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=activity&q=" + searchQuery + "&closed=False&tagged=javascript&site=stackoverflow&key=C8mLfFHVyj1TGEfdDQTEYw((&access_token=" + globalObject.getAccessToken() + "&callback=JSON_CALLBACK"));
 	};
 	
 	searchObject.setSearchTag = function(_searchQuery){
