@@ -14,7 +14,7 @@ body{
 	font-family:"Blizzard","Arial","Helvetica",sans-serif;font-size:15px;line-height:20px
 }
 h3{
-	font-family:"Blizzard","Arial","Helvetica",sans-serif;font-size:24px;line-height:20px;
+	font-family:"Blizzard","Arial","Helvetica",sans-serif;font-size:30px;line-height:20px;
 }
 .navbar-static {
 	background: #0f2a48 url("../img/bnet-background-1920.3ooDe.jpg") no-repeat center 0 !important;
@@ -54,6 +54,9 @@ pre code{
 .avatar_size{
 	width: 32px;
 	height: 32px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 .topNavBar{
@@ -74,8 +77,12 @@ pre code{
 }
 
 .question_comments{
-	width: 90%;
-	margin: 0 auto;
+	width: 85%;
+	margin-left: 15%;
+}
+
+.comment_user{
+	margin: 5px 0 5px;
 }
 
 .question_user_and_score_bar{
@@ -83,14 +90,27 @@ pre code{
 }
 
 .answer_user{
-	width: 75%;
 	display:inline;	
+    margin: 5px 0 5px;
+	/*margin-left: 5px;*/
 }
 
 .answer_score{	
-	float:right;
+	font-size: 24px;
 }
 
+.comment_score{
+	font-size: 24px;
+}
+.score{
+	text-align: center;
+	width: 7%;
+	float: left;
+}
+
+.question_body{
+	margin-left: 7%;
+}
 .answer_comments_panel{
 	background-color: rgba(230,230,230,1);
 }
@@ -98,10 +118,12 @@ pre code{
 .user_date{
 	float:right;
 	margin-top: 10px;
+	color: rgba(255,255,255,0.5);
 }
 
 .question_user_info{
 	margin-top: 30px;
+	margin-left: 7%;
 }
 
 .question_user_pic{
@@ -128,6 +150,7 @@ pre code{
 	padding: 15px;
 	border: 0px;
 	background-color: rgba(255,255,255,0.01);
+	background-color: rgba(39, 56, 76, 0.901961);
 }
 
 
@@ -157,7 +180,53 @@ div.titlePanel{
     margin-bottom: 15px;
     font-size: 30px;
     border-bottom: 1px solid #ccc;
-    height: 34px;
     clear: both;
+	line-height: 30px;
 
 }
+
+.sort_by{
+	float:right;
+	margin-top: 0.7%;
+}
+
+.inline_search{
+	float:left;
+}
+
+input.sort_by_radio{
+	
+}
+
+p.question_title{
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.tag_list{
+	float: left;
+	margin-top: 10px;
+}
+.topic_tag{
+	padding: 7px;
+	margin-right: 5px;
+	background-color: rgba(255,255,255,0.12);
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.7),inset 0 0 0 2px rgba(255,255,255,0.1);
+}
+
+.question_metrics{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+footer.page-footer{
+	border-top: rgba(255,255,255,0.12);
+	border-top-width: 1px;
+	border-top-style: solid;
+	margin: 10%;
+}
+p.page-footer-row{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+

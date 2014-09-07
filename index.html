@@ -6,11 +6,9 @@
 	    <title>EPIC Overflow</title>
 	    <link rel="stylesheet" href="css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" media="all" href="css/common.min.3TpMn.css" />
-	    <!--[if gt IE 8]><!--><link rel="stylesheet" type="text/css" media="all" href="css/bnet-web.min.3p7Kw.css" /><!-- <![endif]-->
+	    <link rel="stylesheet" type="text/css" media="all" href="css/bnet-web.min.3p7Kw.css" />
 	    <link rel="stylesheet" type="text/css" media="all" href="css/global.min.1vVDz.css" />
-	    
 	    <link rel="stylesheet" type="text/css" media="all" href="css/browse.min.0BONW.css" />
-	    
 	    <link rel="stylesheet" href="css/styles.css">
 
 	    <script src="js/jquery-2.1.1.min.js"></script>
@@ -22,6 +20,27 @@
 	    <script src="js/controllers.js"></script>
 	    <script src="js/factories.js"></script>
 	    <script src="js/app.js"></script>
+	    <script src="js/jquery.fancybox.js"></script>
+		<script type="text/javascript">
+			$(function() {
+					$(document).ready(function() {
+						$(".fancybox").fancybox({
+							openEffect  : 'elastic',
+							closeEffect : 'elastic',
+							closeBtn : 'true',
+							padding : [30,30,30,40],
+							helpers : {
+								overlay : {
+									css : {
+										'background' : 'rgba(0, 0, 0, 0.75)'
+									}
+								}
+							}
+						});
+					});
+
+				});
+		</script>
 	</head>
 	
 	<body ng-controller="GlobalController">
@@ -30,7 +49,7 @@
 		<header class="navbar header">
 			<div class="grid-container">
 				<div class="grid-25">
-					<a class="brand mark" href="/shop/en/">EPIC Overflow</a>
+					<a class="brand mark" ng-click="navigation('home')">EPIC Overflow</a>
 				</div>
 				<div class="grid-75">
 					<div id="service">
@@ -71,7 +90,13 @@
 	</div>
 		<!--All of the subpages are loaded in the following view -->
 		<div class="grid-container" ng-view></div>
-		    
 	</body>
 
+<footer class="page-footer">
+	<p class="page-footer-row">&copy;2014 E. Oliver Coakley	</p>
+	<div>
+		<img src="img/blizzard.41Ned.png" alt="blizzard logo" style="float:left;"/>
+		<img src="img/se-logo-white.png" alt="stack exchange logo" style="float:right;"/>
+	</div>
+</footer>
 </html>

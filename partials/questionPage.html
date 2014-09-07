@@ -12,24 +12,25 @@
 	
 	<div class="panel panel-default">
 	  <div class="panel-body">
-	  	
 
+		<div class="score">
+			<span class="upvote"/>	
 			<h4 class="media-heading answer_score">{{questionData.questionInfo.score}}</h4>
-	  	<div ng-bind-html="questionData.questionInfo.body"></div>
-	  	
-	  	
-				  <div class="question_user_info">
-						<img class="media-object question_user_pic avatar_size" src={{questionData.questionInfo.owner.profile_image}}>
-		    			<h4 class="media-heading answer_user">{{questionData.questionInfo.owner.display_name}}</h4>
-			<span class="user_date"> {{questionData.questionInfo.creation_date + "000" | date:'medium'}}</span>	
-				  </div>
-	  	  	  </div>
+			<span class="downvote"/>	
+		</div>
+
+		<div class="question_body" ng-bind-html="questionData.questionInfo.body"></div>
+			  <div class="question_user_info">
+					<img class="media-object question_user_pic avatar_size" src={{questionData.questionInfo.owner.profile_image}}>
+	    			<h4 class="media-heading answer_user">{{questionData.questionInfo.owner.display_name}}</h4>
+					<span class="user_date"> {{questionData.questionInfo.creation_date + "000" | date:'medium'}}</span>	
+			  </div>
+		</div>
 	</div>
-	
 	<!-- Question's Body's Comments  -->
 	
 	<div class="panel panel-default question_comments">
-			<div ng-repeat="comment in questionData.questionInfo.comments">
+			<div ng-repeat="comment in questionData.questionInfo.comments | limitTo :4">
 			<div class="media panel-body">
 		  <div class="pull-left">
 		    <img class="media-object avatar_size" src={{comment.owner.profile_image}}>
@@ -37,7 +38,7 @@
 		  <div class="media-body">
 		  <div class="question_user_and_score_bar">
 		    <h4 class="media-heading answer_user">{{comment.owner.display_name}}</h4>
-			<h4 class="media-heading answer_score">{{comment.score}}</h4>
+			<!-- <h4 class="media-heading answer_score">{{comment.score}}</h4> -->
 			</div>	
 				<div ng-bind-html="comment.body"></div>
 			<span class="user_date">{{comment.creation_date + "000" | date:'medium'}}</span>	
@@ -53,46 +54,40 @@
 		<h4 class="answers-subheader">{{questionData.questionInfo.answer_count}} Answers</h4>
 	</div>
  
-	<div class="panel panel-default all_answers_panel" ng-repeat="answer in questionData.questionInfo.answers">
-		<div class="media panel-body">
-		  <div class="pull-left">
-		    <img class="media-object avatar_size" src="{{answer.owner.profile_image}}">
-		  </div>	  
-		  <div class="media-body">
-		  <div class="question_user_and_score_bar">
-		    <h4 class="media-heading answer_user">{{answer.owner.display_name}}</h4>
-			<h4 class="media-heading answer_score">{{answer.score}}</h4>
+	<div ng-repeat="answer in questionData.questionInfo.answers">
+		<div class="panel panel-body">
+			<div class="score">
+				<span class="upvote"/>
+				<h4 class="media-heading answer_score">{{answer.score}}</h4>
+				<span class="downvote"/>
 			</div>
-<div>
-			<div class="panel panel-default question_no_border">
-		    	<div class="media panel-body">
-		    <div ng-bind-html="answer.body"></div>	
-			<span class="user_date">{{answer.creation_date + "000" | date:'medium'}}</span>	
-			</div>	
-			</div>	
-			</div>	
-		    <div ng-repeat="comment in answer.comments">
-		    	
-			<div class="panel panel-default answer_comments_panel">
-		    	<div class="media panel-body">
-				  <div class="pull-left">
+		 	<div class="media-body">
+				<div class="panel panel-default question_no_border">
+		    		<div ng-bind-html="answer.body"></div>	
+	    			<img class="media-object avatar_size" src="{{answer.owner.profile_image}}"/>
+		    		<h4 class="media-heading answer_user">{{answer.owner.display_name}}</h4>
+					<span class="user_date">{{answer.creation_date + "000" | date:'medium'}}</span>	
+				</div>	
+			</div>
+		</div>
+    	<div ng-repeat="comment in answer.comments | limitTo: 4">
+			<div class="panel panel-default question_comments">
+    			<div class="panel panel-body">
+					<div class="pull-left">
 						<img class="media-object avatar_size" src="{{comment.owner.profile_image}}">
-				  </div>
-				  <div class="media-body">
-		  <div class="question_user_and_score_bar">
-		    <h4 class="media-heading answer_user">{{comment.owner.display_name}}</h4>
-			<h4 class="media-heading answer_score">{{comment.score}}</h4>
-			</div>	
-					<div ng-bind-html="comment.body"></div>	
-					
-					<span class="user_date">{{comment.creation_date + "000" | date:'medium'}}</span>			
-				  </div>
+					</div>
+					<div class="media-body">
+  						<div class="question_user_and_score_bar">
+					    	<h4 class="media-heading comment_user">{{comment.owner.display_name}}</h4>
+						<!--<h4 class="media-heading comment_score">{{comment.score}}</h4>-->
+						</div>	
+						<div ng-bind-html="comment.body"></div>	
+							<span class="user_date">{{comment.creation_date + "000" | date:'medium'}}</span>			
+			 		 	</div>
+					</div>
 				</div>
-			</div>
 			</div>
 		  </div>
 		</div>
 	</div>
-	<br><br>
-
 </div>
