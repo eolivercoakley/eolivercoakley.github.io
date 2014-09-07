@@ -25,58 +25,60 @@
 	
 	<body ng-controller="GlobalController">
 	    
-	<div class="navbar-static">
-		<header class="navbar header">
-			<div class="grid-container">
-				<div class="grid-25">
-					<a class="brand mark" ng-click="navigation('home')">EPIC Overflow</a>
-				</div>
-				<div class="grid-75">
-					<div id="service">
-						<ul class="service-bar">
-							<li class="service-cell service-home" ng-show="isAuthenticated">
-								<a href="" ng-click="navigation('home')"></a>
-							</li>
-							<li class="service-cell service-welcome" ng-show="!isAuthenticated">
-								<a href="" ng-click="navigation('login')">Log in</a> or <a href="https://stackoverflow.com/users/signup?returnurl=http%3A%2F%2Feolivercoakley.github.io%2F">Create an Account</a>
-							</li>
-							<li class="service-cell service-shop">
-								<a href="" class="service-link" ng-click="navigation('question')">Sample Question</a>
-							</li>
-							<li class="service-cell service-account">
-								<a href="" class="service-link" tabindex="50" ng-click="navigation('search')">Search</a>
-							</li>
-						</ul>
-						<span class="clear"><!-- --></span>
-					</div>
-				</div>
-			</div>
-		</header>
-		<nav class="navbar">
-			<div class="grid-container">
-				<div class="grid-50">
-					<ul class="breadcrumb">
-						<li>
-							<span class="breadcrumb-home">
-								<i class="icon-home"></i>
-								{{$location.path()}}
-							</span>
-							<span class="divider"><i class="icon-chevron-right icon-white"></i></span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</div>
-		<!--All of the subpages are loaded in the following view -->
-		<div class="grid-container" ng-view></div>
-	</body>
+        <div class="navbar-static">
+            <header class="navbar header">
+                <div class="grid-container">
+                    <div class="grid-25">
+                        <a class="brand mark" ng-click="navigation('Home')">EPIC Overflow</a>
+                    </div>
+                    <div class="grid-75">
+                        <div id="service">
+                            <ul class="service-bar">
+                                <li class="service-cell service-home" ng-show="isAuthenticated">
+                                    <a href="" ng-click="navigation('Home')"></a>
+                                </li>
+                                <li class="service-cell service-welcome" ng-show="!isAuthenticated">
+                                    <a href="" ng-click="navigation('Login')">Log in</a> or <a href="https://stackoverflow.com/users/signup?returnurl=http%3A%2F%2Feolivercoakley.github.io%2F">Create an Account</a>
+                                </li>
+                                <li class="service-cell service-account">
+                                    <a href="" class="service-link" tabindex="50" ng-click="navigation('Search')">Search</a>
+                                </li>
+                            </ul>
+                            <span class="clear"></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-<footer class="page-footer">
-	<p class="page-footer-row">&copy;2014 E. Oliver Coakley	</p>
-	<div>
-		<img src="img/blizzard.41Ned.png" alt="blizzard logo" style="float:left;"/>
-		<img src="img/se-logo-white.png" alt="stack exchange logo" style="float:right;"/>
-	</div>
-</footer>
+            <nav class="navbar">
+                <div class="grid-container">
+                    <div class="grid-50">
+                        <ul class="breadcrumb">
+                            <li>
+                                <span class="breadcrumb-home">
+                                    <i class="icon-home"></i>
+                                </span>
+                                <span ng-repeat="item in breadCrumbList[$location.path()]">
+                                    <span class="divider">
+                                        <a href="#/{{item}}">{{item}}</a>
+                                        <i ng-show="!$last" class="icon-chevron-right icon-white"></i>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+            <!--All of the subpages are loaded in the following view -->
+        <div class="grid-container" ng-view></div>
+
+        <footer class="page-footer">
+            <p class="page-footer-row">&copy;2014 E. Oliver Coakley	</p>
+            <div>
+                <img src="img/blizzard.41Ned.png" alt="blizzard logo" style="float:left;"/>
+                <img src="img/se-logo-white.png" alt="stack exchange logo" style="float:right;"/>
+            </div>
+        </footer>
+	</body>
 </html>

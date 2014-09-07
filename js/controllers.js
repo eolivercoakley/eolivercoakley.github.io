@@ -14,6 +14,15 @@ myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', 
       };
       $scope.$location = $location;
 
+      $scope.breadCrumbList = {
+          "/Login" : ["Login"],
+          "/Question" : ["Home", "Search", "Question"],
+          "/Home" : ["Home"],
+          "/Search" : ["Home", "Search"]
+      }
+
+      $scope.currentLocation = $scope.breadCrumbList[$location];
+
       $scope.validateSnippet = function(snippet) {
           return $sce.trustAsHtml(snippet);
       };
@@ -30,7 +39,7 @@ myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', 
 	//Auto redirect if login is valid. Shouldn't need this, as navigation won't allow the user to return to login 
 	//after authentication, but prevents the user from directly inputting the url.
 	if(globalObject.getAccessToken() && location.hash.substring("login") != -1){
-		location.href = "#/home";
+		location.href = "#/Home";
 	}
 
 }]);
@@ -83,7 +92,7 @@ myApp.controller('HomeController', ['searchData', 'allUserData', '$scope', '$rou
 
       this.setSearchQuery = function(query){
           searchData.setSearchTag(query);
-          location.href = "#/search";
+          location.href = "#/Search";
       };
 
 
@@ -97,8 +106,13 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  	if(questionData.getQuestionID()){
   	  		questionData.getQuestionAPIData().success(
   	  			function(data){
-  	  				this.questionInfo = data.items[0];
-  	  				console.error(this.questionInfo);
+                    if(data && data.items && data.items[0]){
+                        this.questionInfo = data.items[0];
+                        this.displayScreen = true;
+                    }
+                    else{
+                        this.displayScreen = false;
+                    }
   	  			}.bind(this)
   	  		);
   	  	};  	  	
@@ -124,7 +138,7 @@ myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$
   	  	//Set the question ID and now load the new page.
   	  	this.loadQuestion = function(questionInfo){
   	  		questionData.setQuestionID(questionInfo);
-  	  		location.href = "#/question";
+  	  		location.href = "#/Question";
   	  	};
   	  	
   	  	//Get search information from the API when the user submits the form post.

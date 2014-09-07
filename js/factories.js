@@ -34,7 +34,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	    //If the accessToken has been set, then the user can login. Redirect to the home page.
 	    if(accessToken){
 	    	console.error(accessToken);
-	    	location.href = "#/home";
+	    	location.href = "#/Home";
 	    }		
 	})();
 		

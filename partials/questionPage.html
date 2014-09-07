@@ -1,7 +1,7 @@
 <!-- Question Page -->
 
 <!--Title Section -->
-<div class="question_page_container">
+<div class="question_page_container" ng-show="questionData.displayScreen">
 	<div class="titlePanel">
 	  <h3 class="question_title" ng-bind-html="validateSnippet(questionData.questionInfo.title)"></h3> <div class="question_favorite_icon" ng-show="questionData.isFavorite">[[favorite star]]</div>
 	</div>	
