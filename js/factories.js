@@ -7,7 +7,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 
     var globalObject = {}; //Object to store the access token 
 	var locationObject = {}; //Used to store the auth data passed back via location.hash	
-	var accessToken = "Sikct*IjHJi4P(VqMN0gSg))"; //debug for now @TODO - REMOVE THIS
+	var accessToken = "";//"Sikct*IjHJi4P(VqMN0gSg))"; //debug for now @TODO - REMOVE THIS
 	var userFavoriteQuestionIDs = [];
 	
 	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
