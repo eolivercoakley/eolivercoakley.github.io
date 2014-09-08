@@ -52,7 +52,7 @@
 			<div class="question_footer">
 				<div class=tag_list>
 					<span ng-repeat="tag in question.tags">
-						<span class="topic_tag">{{tag}}</span>
+                        <a class="topic_tag" ng-click="setSearchQuery(tag); searchData.getSearchInfo(searchData)" rel={{tag}}>{{tag}}</a>
 					</span>
 				</div>
 				<span class="user_date">Date: {{question.creation_date + "000" | date:'medium'}}</span><br>
@@ -63,11 +63,11 @@
 </div>
 
 <!--/div-->
-<h2>Question TagCloud</h2>
+<h2 class="profile-subheader">Question Tags</h2>
 <div class="tagCloudHolder panel panel-default" >
     <div class="media panel-body">
         <div id="tagging">
-            <a class="tagCloud topic_tag" ng-repeat="question in searchData.searchInfo" ng-click="searchData.loadQuestion(question.question_id)"
+            <a class="tagCloud topic_tag" ng-repeat="question in searchData.searchInfo" ng-click="loadQuestion(question.question_id)"
                rel="{{question.view_count}}" ng-bind-html="validateSnippet(question.title)">
             </a>
         </div>

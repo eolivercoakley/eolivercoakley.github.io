@@ -1,3 +1,4 @@
+<div class="homePageContainer">
 <div ng-show="homeData.displayScreen">
 <!--User Info Block-->
 <h2 class="profile-subheader">Profile</h2>
@@ -146,7 +147,7 @@
             <div class="question_footer">
                 <div class=tag_list>
                     <span ng-repeat="tag in _favoritesInfo.tags">
-                        <span class="topic_tag">{{tag}}</span>
+                        <a class="topic_tag" ng-click="setSearchQuery(tag)" rel={{tag}}>{{tag}}</a>
                     </span>
                 </div>
                 <span class="user_date">Date: {{ _favoritesInfo.creation_date + "000" | date:'medium'}}</span>
@@ -160,9 +161,10 @@
     <div class="media panel-body">
         <div id="tagging">
             <span ng-repeat="(key, tag) in homeData.tagCloudInfo">
-                <a ng-click="homeData.setSearchQuery(tag.name)" rel={{tag.count}}>{{tag.name}}</a>
+                <a class="tagCloud topic_tag" ng-click="setSearchQuery(tag.name)" rel={{tag.count}}>{{tag.name}}</a>
             </span>
         </div>
     </div>
+</div>
 </div>
 </div>

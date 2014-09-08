@@ -4,8 +4,8 @@
 
 var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies', 'ngSanitize']);
 
-myApp.controller('GlobalController', ['globalObject', 'questionData', 'allUserData', '$scope', '$routeParams', '$http', '$location', '$sce',
-  function(globalObject, questionData, allUserData, $scope, $routeParams, $http, $location, $sce) {
+myApp.controller('GlobalController', ['globalObject', 'searchData', 'questionData', 'allUserData', '$scope', '$routeParams', '$http', '$location', '$sce',
+  function(globalObject, searchData, questionData, allUserData, $scope, $routeParams, $http, $location, $sce) {
       $scope.isAuthenticated = globalObject.getAccessToken();
       
       //Allow the global header widget's buttons to navigate to the other subsections.
@@ -31,6 +31,12 @@ myApp.controller('GlobalController', ['globalObject', 'questionData', 'allUserDa
       $scope.loadQuestion = function(questionInfo){
           questionData.setQuestionID(questionInfo);
           location.href = "#/Question";
+      };
+
+
+      $scope.setSearchQuery = function(query){
+          searchData.setSearchTag(query);
+          location.href = "#/Search";
       };
 
       //Get favorites data for the user if they are authenticated:
@@ -109,11 +115,6 @@ myApp.controller('HomeController', ['globalObject', 'searchData', 'allUserData',
               }).bind(this)(i);
           }
       }
-
-      this.setSearchQuery = function(query){
-          searchData.setSearchTag(query);
-          location.href = "#/Search";
-      };
 
 }]);
 
