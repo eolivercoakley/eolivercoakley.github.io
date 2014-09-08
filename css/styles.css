@@ -147,10 +147,12 @@ pre code{
 
 .answer_score{	
 	font-size: 24px;
+    float: right;
 }
 
 .comment_score{
 	font-size: 24px;
+    float: right;
 }
 .score{
 	text-align: center;
@@ -479,3 +481,6 @@ p.timeline-description{
     line-height: normal;
 }
 
+.media-heading.answer_score{
+    float:none;
+}
