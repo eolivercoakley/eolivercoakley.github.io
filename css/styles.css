@@ -289,3 +289,14 @@ p.page-footer-row{
     -webkit-transition: opacity,0.2s;
     transition: opacity .2s;
 }
+
+.fav_icon_valid{
+    background: yellow;
+    width: 20px;
+    height: 20px;
+}
+.fav_icon_invalid{
+    background: grey;
+    width: 20px;
+    height: 20px;
+}

@@ -36,9 +36,8 @@ myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', 
 		userLoginAuthentication.authenticate();
 	};
 
-	//Auto redirect if login is valid. Shouldn't need this, as navigation won't allow the user to return to login 
-	//after authentication, but prevents the user from directly inputting the url.
-	if(globalObject.getAccessToken() && location.hash.substring("login") != -1){
+	//Auto redirect if login is valid.
+	if(globalObject.getAccessToken() && location.hash.substring("Login") != -1){
 		location.href = "#/Home";
 	}
 
@@ -127,7 +126,6 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  	};  	  	
   	  	
   	  	this.setFavorite = function(){
-  	  		console.error("Setting a favorite!");
   	  		questionData.toggleFavoriteQuestion().success(
   	  			function(data){
   	  				this.favoriteInfo = data;
@@ -137,6 +135,8 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  	};
   	  	
   	  	this.isFavorite = globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1;
+        this.isAbleToFavorite = globalObject.getAccessToken();
+
 }]);
 
 
@@ -152,7 +152,6 @@ myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$
   	  	
   	  	//Get search information from the API when the user submits the form post.
   	  	this.getSearchInfo = function(searchInfo){
-  	  		console.error("In search info");
   	  		//Update the search only if the user is requesting a new query.
   	  		if(searchInfo && searchInfo.userInputText){
   	  			searchData.setSearchTag(searchInfo.userInputText);

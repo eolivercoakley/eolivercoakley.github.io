@@ -3,7 +3,6 @@
  */
 
 myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieStore) {
-    console.error("Creating the global service");
 
     var globalObject = {}; //Object to store the access token 
 	var locationObject = {}; //Used to store the auth data passed back via location.hash	
@@ -31,11 +30,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 	    	accessToken = locationObject.access_token;
 	    	$cookieStore.put("access_token", accessToken);	   
 	    }
-	    //If the accessToken has been set, then the user can login. Redirect to the home page.
-	    if(accessToken){
-	    	console.error(accessToken);
-	    	location.href = "#/Home";
-	    }		
+
 	})();
 		
 	globalObject.getAccessToken = function(){
@@ -78,14 +73,12 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 }]);
 
 myApp.factory('userLoginAuthentication', [ '$http', 'globalObject', function($http, globalObject) {
-	console.error("ATTEMPTING LOGIN INIT!");
 	
   	var authenticationInfo = {};
 	var authentication_cache;
 		
 	authenticationInfo.authenticate = function(){
-        	if(!(globalObject.getAccessToken())){        		
-				console.error("Authentication Redirect!");
+        	if(!(globalObject.getAccessToken())){
         		location.href = "https://stackexchange.com/oauth/dialog?client_id=3523&scope=no_expiry,write_access&redirect_uri=http://eolivercoakley.github.io";         		
         	}       	
         };
@@ -95,8 +88,6 @@ myApp.factory('userLoginAuthentication', [ '$http', 'globalObject', function($ht
 
 
 myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalObject) {
-		
-	console.error("Building out the user data request...");
   	
   	var allUserInfo = {};	
   	var accessToken = globalObject.getAccessToken();
@@ -125,13 +116,11 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 	function userFavoritesRequest(promiseData, url){
 		if(!promiseData){
 			promiseData = $http.jsonp(url).success(function(data){
-				console.error(data);
 				var arrayOfValidFavoriteIDs = [];
 				data.items.forEach(function(a){
 					arrayOfValidFavoriteIDs.push(a.question_id);
 				});
 				globalObject.addMultipleUserIDs(arrayOfValidFavoriteIDs);
-				console.error(globalObject.getFavoriteIDArray());
 				return data;
 			});
 		}
@@ -141,8 +130,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 	function generalAPICall(promiseData, url){
 		if(!promiseData){
 			promiseData = $http.jsonp(url).success(function(data){
-                console.error(data);
-				return data;
+                return data;
 			});	
 		}
 		return promiseData;
@@ -153,10 +141,8 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 }]);
 
 myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalObject) {
-	console.error("Creating the Question Model");
-	
-  	var questionObject = {};	
-	var questionID = 11541695;
+  	var questionObject = {};
+	var questionID = null;//11541695;
 	var promise_questionInfo;	
 	var lastSearchUrl = "";
 	var isFavorite = false;
@@ -210,7 +196,6 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
 		if(!promiseData || url != lastSearchUrl){			
 			lastSearchUrl = url;
 			promiseData = $http.jsonp(url).success(function(data){
-				console.error(data);
 				return data;
 			});
 		}
@@ -221,10 +206,7 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
 }]);
 
 myApp.factory('searchData', ['$http', 'globalObject', function($http, globalObject) {
-	console.error("Loading Search Model");
-	
-  	var searchObject = {};	
-	
+  	var searchObject = {};
 	var searchQuery = 'javascript';
 	var promise_searchInfo;
 	var lastSearchUrl = "";
