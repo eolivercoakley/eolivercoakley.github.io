@@ -1,63 +1,161 @@
 <div ng-show="homeData.displayScreen">
 <!--User Info Block-->
-<h2>User Profile</h2>
+<h2 class="profile-subheader">Profile</h2>
 <div ng-repeat="(key, _userInfo) in homeData.userInfo">
-    <div class="panel panel-default">
+    <div class="panel panel-default profile-panel">
         <div class="media panel-body">
-            <img src="{{_userInfo.profile_image}}"></img><br>
-            <span ng-show="_userInfo.display_name">Name: {{_userInfo.display_name}}<br></span>
-            <span ng-show="_userInfo.creation_date">Member Since: {{_userInfo.creation_date + "000" | date:'MM/dd/yyyy'}}<br></span>
-            <span ng-show="_userInfo.reputation">Reputation: {{_userInfos.reputation}}<br></span>
-            <span ng-show="_userInfo.account_id">Account ID: {{_userInfo.account_id}}<br></span>
-            <span ng-show="_userInfo.age">Age: {{_userInfo.age}}<br></span>
-            <span ng-show="_userInfo.location">Location: {{_userInfo.location}}<br></span>
-            <span ng-show="_userInfo.website_url">Website: <a href="{{_userInfo.website_url}}">{{_userInfo.website_url}}</a><br></span>
+            <div class="user-picture"><img src="{{_userInfo.profile_image}}"></img></div>
+            <table class="user-info">
+                <tr>
+                    <td>Name</td>
+                    <td ng-show="_userInfo.display_name">{{_userInfo.display_name}}</td>
+                </tr>
+                <tr>
+                    <td>Joined</td>
+                    <td ng-show="_userInfo.creation_date">{{_userInfo.creation_date + "000" | date:'MM/dd/yyyy'}}</td>
+                </tr>
+                <tr>
+                    <td>Reputation</td>
+                    <td ng-show="_userInfo.reputation">{{_userInfo.reputation}}</td>
+                </tr>
+                <tr>
+                    <td>Account ID</td>
+                    <td ng-show="_userInfo.account_id">{{_userInfo.account_id}}</td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td ng-show="_userInfo.age">{{_userInfo.age}}</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td ng-show="_userInfo.location">{{_userInfo.location}}</td>
+                </tr>
+                <tr>
+                    <td>Website</td>
+                    <td ng-show="_userInfo.website_url"><a href="{{_userInfo.website_url}}">{{_userInfo.website_url}}</a></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
 
-<h2>Badges</h2>
-<div ng-repeat="(key, _badgesInfo) in homeData.badgesInfo | limitTo : 3">
-    <div class="panel panel-default">
+<h2 class="profile-subheader">Badges</h2>
+<div ng-repeat="(key, _badgesInfo) in homeData.badgesInfo">
+    <div class="col-md-4 panel panel-default badge-panel">
         <div class="media panel-body">
-            <span>Badge Name: {{_badgesInfo.name}}<br></span>
-            <span>Rank: {{_badgesInfo.rank}}<br></span>
+            <span ng-show="_badgesInfo.rank == 'gold'"><img class="user-picture" src="img/achievement_gold.jpg" alt="gold achievement"/></span>
+            <span ng-show="_badgesInfo.rank == 'silver'"><img class="user-picture" src="img/achievement_silver.jpg" alt="silver achievement"/></span>
+            <span ng-show="_badgesInfo.rank == 'bronze'"><img class="user-picture" src="img/achievement_bronze.jpg" alt="bronze achievement"/></span>
+            <p class="badge-title">{{_badgesInfo.name}}</p>
+            <p class="badge-description" ng-bind-html="validateSnippet(_badgesInfo.description)">{{_badgesInfo.description}}</p>
         </div>
     </div>
 </div>
 
-<h2>User Timeline</h2>
+
+<h2 class="profile-subheader">Timeline</h2>
 <div ng-repeat="(key, _timelineInfo) in homeData.timelineInfo | limitTo : 6">
     <div class="panel panel-default">
         <div class="media panel-body">
-            <span ng-show="_timelineInfo.creation_date">Action Time: {{_timelineInfo.creation_date + "000" | date:'medium'}}<br></span>
-            <span>Action:{{_timelineInfo.timeline_type}}<br></span>
-            <span ng-click="loadQuestion(_timelineInfo.post_id)">PostID:{{_timelineInfo.post_id}}<br></span>
 
-            <span ng-show="_timelineInfo.timeline_type == 'badge'">Badge Earned: {{_timelineInfo.detail}}<br></span>
-            <span ng-show="_timelineInfo.timeline_type == 'answered'">Answered Question: {{_timelineInfo.title}}<br></span>
-            <span ng-show="_timelineInfo.timeline_type == 'commented'">User Commented: {{_timelineInfo.detail}}<br></span>
+            <div class="timeline-icon-container">
+                <div ng-show="_timelineInfo.timeline_type == 'accepted' || _timelineInfo.timeline_type == 'answered'" class="timeline-icon icon-check"/>
+                <div ng-show="_timelineInfo.timeline_type == 'asked'" class="timeline-icon icon-question-mark"/>
+                <div ng-show="_timelineInfo.timeline_type == 'badge'" class="timeline-icon icon-badge"/>
+                <div ng-show="_timelineInfo.timeline_type == 'commented' || _timelineInfo.timeline_type == 'suggested'" class="timeline-icon icon-comment"/>
+                <div ng-show="_timelineInfo.timeline_type == 'reviewed'" src="img/eyeball.png" alt="timeline event" class="timeline-icon icon-eyeball"/>
+                <div ng-show="_timelineInfo.timeline_type == 'revision'" src="img/editing.png" alt="timeline event" class="timeline-icon icon-pencil"/>
+            </div>
+            <div class="timeline-text">
+                <span ng-show="_timelineInfo.timeline_type == 'accepted'">
+
+                    <p class="timeline-header">Accepted An Answer</p>
+                    <a href="{{ _timelineInfo.link }}" ng-bind-html="validateSnippet(_timelineInfo.title)">{{_timelineInfo.title }}</a>
+                    <p class="timeline-description">{{ _timelineInfo.detail }}</p>
+                    <br/>
+                </span>
+                <span ng-show="_timelineInfo.timeline_type == 'answered'">
+                    <p class="timeline-header">Posted An Answer</p>
+                    <a href="{{ _timelineInfo.link }}" ng-bind-html="validateSnippet(_timelineInfo.title)">{{_timelineInfo.title }}</a>
+                    <br/>
+                </span>
+
+                <span ng-show="_timelineInfo.timeline_type == 'asked'">
+                    <p class="timeline-header">Asked A Question</p>
+                    <a href="{{ _timelineInfo.link }}" ng-bind-html="validateSnippet(_timelineInfo.title)">{{_timelineInfo.title }}</a>
+                    <br/>
+                </span>
+
+                <span ng-show="_timelineInfo.timeline_type == 'badge'">
+                    <p class="timeline-header">Earned A Badge</p>
+                    <p class="timeline-description">New Badge: {{ _timelineInfo.detail }}</p>
+                    <a href="{{ _timelineInfo.link }}" ng-bind-html="validateSnippet(_timelineInfo.title)">{{_timelineInfo.title }}</a>
+                </span>
+
+                <span ng-show="_timelineInfo.timeline_type == 'commented'">
+                    <p class="timeline-header">Posted A Comment</p>
+                    <a href="{{ _timelineInfo.link }}" ng-bind-html="validateSnippet(_timelineInfo.title)">{{_timelineInfo.title }}</a>
+                    <p class="timeline-description">"{{ _timelineInfo.detail }}"</p>
+                    <br/>
+                </span>
+
+                <span ng-show="_timelineInfo.timeline_type == 'reviewed'">
+                    <p class="timeline-header">Reviewed A Suggested Edit</p>
+                    <a href="{{ _timelineInfo.link }}" ng-bind-html="validateSnippet(_timelineInfo.title)">{{_timelineInfo.title }}</a>
+                    <p class="timeline-description">"{{ _timelineInfo.detail }}"</p>
+                    <br/>
+                </span>
+
+                <span ng-show="_timelineInfo.timeline_type == 'revision'">
+                    <p class="timeline-header">Edited A Post</p>
+                    <a href="{{ _timelineInfo.link }}" ng-bind-html="validateSnippet(_timelineInfo.title)">{{_timelineInfo.title }}</a>
+                    <p class="timeline-description">"{{ _timelineInfo.detail }}"</p>
+                    <br/>
+                </span>
+
+                <span ng-show="_timelineInfo.timeline_type == 'suggested'">
+                    <p class="timeline-header">Suggested An Edit</p>
+                    <a href="{{ _timelineInfo.link }}" ng-bind-html="validateSnippet(_timelineInfo.title)">{{_timelineInfo.title }}</a>
+                    <p class="timeline-description">"{{ _timelineInfo.detail }}"</p>
+                    <br/>
+                </span>
+
+                <span ng-show="_timelineInfo.creation_date" class="user_date">{{ _timelineInfo.creation_date + "000" | date:'medium' }}<br></span>
+            </div>
         </div>
     </div>
 </div>
 
-<h2>User Favorites</h2>
+<h2 class="profile-subheader">Favorites</h2>
 <div ng-repeat="(key, _favoritesInfo) in homeData.favoritesInfo | limitTo : 6">
     <div class="panel panel-default">
         <div class="media panel-body">
-            <span ng-show="_favoritesInfo.creation_date">Created On: {{_favoritesInfo.creation_date + "000" | date:'medium'}}<br></span>
-            <span>Title: <span ng-bind-html="validateSnippet(_favoritesInfo.title)"></span><br></span>
-            <span>Link:{{_favoritesInfo.link}}<br></span>
-            <span ng-click="loadQuestion(_favoritesInfo.question_id)">QuestionID:{{_favoritesInfo.question_id}}<br></span>
-            <span>Views:{{_favoritesInfo.view_count}}<br></span>
-            <span>Score:{{_favoritesInfo.score}}<br></span>
-            <span>Answers:{{_favoritesInfo.answer_count}}<br></span>
-            <span ng-show="_favoritesInfo.tags">Tags: {{_favoritesInfo.tags}}<br></span>
+
+            <a ng-click="loadQuestion(_favoritesInfo.question_id)">
+                <p class="question_title" ng-bind-html="validateSnippet(_favoritesInfo.title)"></p>
+            </a>
+
+
+            <div class="question_metrics">
+                <span>Score: {{ _favoritesInfo.score }}</span> |
+                <span>Views: {{ _favoritesInfo.view_count }}</span> |
+
+                <span>Answers: {{ _favoritesInfo.answer_count }}</span>
+
+            </div>
+            <div class="question_footer">
+                <div class=tag_list>
+                    <span ng-repeat="tag in _favoritesInfo.tags">
+                        <span class="topic_tag">{{tag}}</span>
+                    </span>
+                </div>
+                <span class="user_date">Date: {{ _favoritesInfo.creation_date + "000" | date:'medium'}}</span>
+            </div>
         </div>
     </div>
 </div>
 
-<h2>User Tags</h2>
+<h2 class="profile-subheader">Tags</h2>
 <div class="tagCloudHolder panel panel-default" >
     <div class="media panel-body">
         <div id="tagging">

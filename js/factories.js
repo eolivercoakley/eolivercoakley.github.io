@@ -6,7 +6,7 @@ myApp.factory('globalObject', ['$http', '$cookieStore', function($http, $cookieS
 
     var globalObject = {}; //Object to store the access token 
 	var locationObject = {}; //Used to store the auth data passed back via location.hash	
-	var accessToken = "9UOfQK7ZNY6XbiyYS97S3Q))"; //debug for now @TODO - REMOVE THIS
+	var accessToken = null;
 	var userFavoriteQuestionIDs = [];
 	
 	//Obtain access data from the url after the authentication data is sent back, but before the page is re-routed.
@@ -142,7 +142,7 @@ myApp.factory('allUserData', ['$http', 'globalObject',  function($http, globalOb
 
 myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalObject) {
   	var questionObject = {};
-	var questionID = null;//11541695;
+	var questionID = null;
 	var promise_questionInfo;	
 	var lastSearchUrl = "";
 	var isFavorite = false;

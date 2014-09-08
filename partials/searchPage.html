@@ -6,7 +6,7 @@
 	<td><button ng-click="searchData.loadQuestion(question.question_id)">Link to question with id: {{question.question_id}}</button></td>
 </table-->
 
-<!--div class="panel panel-default"-->
+<div class="searchPageContainer">
 
 <div class="panel panel-default panel-body" ng-model="sortOrder">
 	<div class="inline_search">
@@ -67,9 +67,10 @@
 <div class="tagCloudHolder panel panel-default" >
     <div class="media panel-body">
         <div id="tagging">
-            <a class="tagCloud" ng-repeat="question in searchData.searchInfo" ng-click="searchData.loadQuestion(question.question_id)"
+            <a class="tagCloud topic_tag" ng-repeat="question in searchData.searchInfo" ng-click="searchData.loadQuestion(question.question_id)"
                rel="{{question.view_count}}" ng-bind-html="validateSnippet(question.title)">
             </a>
         </div>
     </div>
 </div>
+    </div>
