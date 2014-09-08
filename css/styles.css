@@ -481,6 +481,6 @@ p.timeline-description{
     line-height: normal;
 }
 
-.media-heading.answer_score{
+.score .answer_score{
     float:none;
 }
