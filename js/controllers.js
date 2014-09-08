@@ -4,8 +4,8 @@
 
 var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies', 'ngSanitize']);
 
-myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', '$http', '$location', '$sce',
-  function(globalObject, $scope, $routeParams, $http, $location, $sce) {
+myApp.controller('GlobalController', ['globalObject', 'allUserData', '$scope', '$routeParams', '$http', '$location', '$sce',
+  function(globalObject, allUserData, $scope, $routeParams, $http, $location, $sce) {
       $scope.isAuthenticated = globalObject.getAccessToken();
       
       //Allow the global header widget's buttons to navigate to the other subsections.
@@ -26,6 +26,11 @@ myApp.controller('GlobalController', ['globalObject', '$scope', '$routeParams', 
       $scope.validateSnippet = function(snippet) {
           return $sce.trustAsHtml(snippet);
       };
+
+      //Get favorites data for the user if they are authenticated:
+      if(globalObject.getAccessToken()){
+          allUserData.getUserFavorites();
+      }
 }]);
 
 myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', '$scope', '$routeParams', '$http',
@@ -129,13 +134,13 @@ myApp.controller('QuestionController', ['globalObject', 'questionData', '$scope'
   	  		questionData.toggleFavoriteQuestion().success(
   	  			function(data){
   	  				this.favoriteInfo = data;
-  	  				this.isFavorite = globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1;	
+  	  				this.isFavorite = globalObject.isQuestionFavorite(questionData.getQuestionID());
   	  			}.bind(this)
   	  		);
   	  	};
-  	  	
-  	  	this.isFavorite = globalObject.getFavoriteIDArray().indexOf(questionData.getQuestionID()) > -1;
-        this.isAbleToFavorite = globalObject.getAccessToken();
+
+      this.isFavorite = globalObject.isQuestionFavorite(questionData.getQuestionID());
+      this.isAbleToFavorite = globalObject.getAccessToken();
 
 }]);
 

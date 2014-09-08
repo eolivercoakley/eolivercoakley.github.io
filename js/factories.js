@@ -163,7 +163,6 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
 	
 	questionObject.toggleFavoriteQuestion = function(){
 		var isFavorited = "";
-		
 		globalObject.isQuestionFavorite(questionID) ? isFavorited = "/undo" : "";
 		
 		var url_to_search = "https://api.stackexchange.com/2.2/questions/"+ questionID +"/favorite" + isFavorited;			
@@ -189,6 +188,7 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
             	}
 			return data;
 		}).error(function(data){
+            console.error("Unable to toggle favorite:", arguments);
 		});
 	};
       

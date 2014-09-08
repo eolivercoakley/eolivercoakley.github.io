@@ -4,7 +4,7 @@
 <div class="question_page_container" ng-show="questionData.displayScreen">
 	<div class="titlePanel">
         <h3 class="question_title" ng-bind-html="validateSnippet(questionData.questionInfo.title)"></h3>
-        <div class="question_favorite_icon" ng-show="questionData.isAbleToFavorite" ng-class="questionData.isFavorite ? 'fav_icon_valid' : 'fav_icon_invalid'" ng-click="questionData.setFavorite()"></div>
+        <div class="question_favorite_icon" ng-show="questionData.isAbleToFavorite" ng-class="questionData.isFavorite ? 'icon-star' : 'icon-star-empty'" ng-click="questionData.setFavorite()"></div>
 	</div>
 	<br>​
 	<!-- Question's Body  -->

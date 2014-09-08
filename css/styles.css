@@ -290,13 +290,7 @@ p.page-footer-row{
     transition: opacity .2s;
 }
 
-.fav_icon_valid{
-    background: yellow;
-    width: 20px;
-    height: 20px;
-}
-.fav_icon_invalid{
-    background: grey;
-    width: 20px;
-    height: 20px;
+.icon-star, .icon-star-empty{
+    cursor: pointer;
+    zoom: 1.3;
 }
