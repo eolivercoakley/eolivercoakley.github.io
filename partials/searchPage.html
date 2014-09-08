@@ -43,7 +43,7 @@
 <div ng-repeat="(key, question) in searchData.searchInfo | orderBy:sortOrder:reverse">
 	<div class="panel panel-default">
 		<div class="media panel-body">
-            <a ng-click="searchData.loadQuestion(question.question_id)"><p class="question_title" ng-bind-html="validateSnippet(question.title)"></p></a>
+            <a ng-click="loadQuestion(question.question_id)"><p class="question_title" ng-bind-html="validateSnippet(question.title)"></p></a>
 			<div class="question_metrics">
 				<span>Score: {{question.score}}</span> | 
 				<span>Views: {{question.view_count}}</span> | 

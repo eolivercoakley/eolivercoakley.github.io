@@ -195,7 +195,9 @@ myApp.factory('questionData', ['$http', 'globalObject',  function($http, globalO
 	function questionAPICall(promiseData, url){
 		if(!promiseData || url != lastSearchUrl){			
 			lastSearchUrl = url;
+            console.error(url);
 			promiseData = $http.jsonp(url).success(function(data){
+                console.error(data);
 				return data;
 			});
 		}

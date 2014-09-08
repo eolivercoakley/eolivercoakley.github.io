@@ -32,6 +32,8 @@
         <div class="media panel-body">
             <span ng-show="_timelineInfo.creation_date">Action Time: {{_timelineInfo.creation_date + "000" | date:'medium'}}<br></span>
             <span>Action:{{_timelineInfo.timeline_type}}<br></span>
+            <span ng-click="loadQuestion(_timelineInfo.post_id)">PostID:{{_timelineInfo.post_id}}<br></span>
+
             <span ng-show="_timelineInfo.timeline_type == 'badge'">Badge Earned: {{_timelineInfo.detail}}<br></span>
             <span ng-show="_timelineInfo.timeline_type == 'answered'">Answered Question: {{_timelineInfo.title}}<br></span>
             <span ng-show="_timelineInfo.timeline_type == 'commented'">User Commented: {{_timelineInfo.detail}}<br></span>
@@ -46,7 +48,7 @@
             <span ng-show="_favoritesInfo.creation_date">Created On: {{_favoritesInfo.creation_date + "000" | date:'medium'}}<br></span>
             <span>Title: <span ng-bind-html="validateSnippet(_favoritesInfo.title)"></span><br></span>
             <span>Link:{{_favoritesInfo.link}}<br></span>
-            <span>QuestionID:{{_favoritesInfo.question_id}}<br></span>
+            <span ng-click="loadQuestion(_favoritesInfo.question_id)">QuestionID:{{_favoritesInfo.question_id}}<br></span>
             <span>Views:{{_favoritesInfo.view_count}}<br></span>
             <span>Score:{{_favoritesInfo.score}}<br></span>
             <span>Answers:{{_favoritesInfo.answer_count}}<br></span>

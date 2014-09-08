@@ -4,8 +4,8 @@
 
 var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies', 'ngSanitize']);
 
-myApp.controller('GlobalController', ['globalObject', 'allUserData', '$scope', '$routeParams', '$http', '$location', '$sce',
-  function(globalObject, allUserData, $scope, $routeParams, $http, $location, $sce) {
+myApp.controller('GlobalController', ['globalObject', 'questionData', 'allUserData', '$scope', '$routeParams', '$http', '$location', '$sce',
+  function(globalObject, questionData, allUserData, $scope, $routeParams, $http, $location, $sce) {
       $scope.isAuthenticated = globalObject.getAccessToken();
       
       //Allow the global header widget's buttons to navigate to the other subsections.
@@ -25,6 +25,12 @@ myApp.controller('GlobalController', ['globalObject', 'allUserData', '$scope', '
 
       $scope.validateSnippet = function(snippet) {
           return $sce.trustAsHtml(snippet);
+      };
+
+      //Set the question ID and now load the new page.
+      $scope.loadQuestion = function(questionInfo){
+          questionData.setQuestionID(questionInfo);
+          location.href = "#/Question";
       };
 
       //Get favorites data for the user if they are authenticated:
@@ -149,11 +155,7 @@ myApp.controller('SearchController', ['searchData', 'questionData', '$scope', '$
   function(searchData, questionData, $scope, $routeParams, $http) {
 
   	  	  	  	
-  	  	//Set the question ID and now load the new page.
-  	  	this.loadQuestion = function(questionInfo){
-  	  		questionData.setQuestionID(questionInfo);
-  	  		location.href = "#/Question";
-  	  	};
+
   	  	
   	  	//Get search information from the API when the user submits the form post.
   	  	this.getSearchInfo = function(searchInfo){
