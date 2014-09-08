@@ -3370,19 +3370,19 @@ background-repeat:no-repeat;background-size:contain;background-position:center b
 }
 
 @font-face{
-font-family:"Blizzard";font-style:normal;font-weight:300;src:local("Blizzard Light"),local("Blizzard-Light"),url("fonts/blizzard-light.3ARY7.woff") format("woff")
+font-family:"Blizzard";font-style:normal;font-weight:300;src:local("Blizzard Light"),local("Blizzard-Light"),url("../fonts/blizzard-light.3ARY7.woff") format("woff")
 }
 
 @font-face{
-font-family:"Blizzard";font-style:normal;font-weight:400;src:local("Blizzard"),local("Blizzard"),url("fonts/blizzard-regular.3GHNU.woff") format("woff")
+font-family:"Blizzard";font-style:normal;font-weight:400;src:local("Blizzard"),local("Blizzard"),url("../fonts/blizzard-regular.3GHNU.woff") format("woff")
 }
 
 @font-face{
-font-family:"Blizzard";font-style:italic;font-weight:400;src:local("Blizzard Italic"),local("Blizzard-Italic"),url("fonts/blizzard-regular-italic.1jLGm.woff") format("woff")
+font-family:"Blizzard";font-style:italic;font-weight:400;src:local("Blizzard Italic"),local("Blizzard-Italic"),url("../fonts/blizzard-regular-italic.1jLGm.woff") format("woff")
 }
 
 @font-face{
-font-family:"Blizzard";font-style:normal;font-weight:700;src:local("Blizzard Bold"),local("Blizzard-Bold"),url("fonts/blizzard-bold.2ZxWn.woff") format("woff")
+font-family:"Blizzard";font-style:normal;font-weight:700;src:local("Blizzard Bold"),local("Blizzard-Bold"),url("../fonts/blizzard-bold.2ZxWn.woff") format("woff")
 }
 
 .accordion{

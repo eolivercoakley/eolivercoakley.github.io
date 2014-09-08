@@ -4,8 +4,8 @@
 
 var myApp = angular.module('stackExchangeApp', ['ngRoute', 'ngCookies', 'ngSanitize']);
 
-myApp.controller('GlobalController', ['globalObject', 'searchData', 'questionData', 'allUserData', '$scope', '$routeParams', '$http', '$location', '$sce',
-  function(globalObject, searchData, questionData, allUserData, $scope, $routeParams, $http, $location, $sce) {
+myApp.controller('GlobalController', ['globalObject', 'userLoginAuthentication', 'searchData', 'questionData', 'allUserData', '$scope', '$routeParams', '$http', '$location', '$sce',
+  function(globalObject, userLoginAuthentication, searchData, questionData, allUserData, $scope, $routeParams, $http, $location, $sce) {
       $scope.isAuthenticated = globalObject.getAccessToken();
       
       //Allow the global header widget's buttons to navigate to the other subsections.
@@ -33,10 +33,13 @@ myApp.controller('GlobalController', ['globalObject', 'searchData', 'questionDat
           location.href = "#/Question";
       };
 
-
       $scope.setSearchQuery = function(query){
           searchData.setSearchTag(query);
           location.href = "#/Search";
+      };
+
+      $scope.stackExchangeLogin = function(){
+          userLoginAuthentication.authenticate();
       };
 
       //Get favorites data for the user if they are authenticated:
@@ -48,10 +51,6 @@ myApp.controller('GlobalController', ['globalObject', 'searchData', 'questionDat
 myApp.controller('LoginController', ['globalObject', 'userLoginAuthentication', '$scope', '$routeParams', '$http',
   function(globalObject, userLoginAuthentication, $scope, $routeParams, $http) {  
 	$scope.userLoginAuthentication = userLoginAuthentication;
-        	
-	this.stackExchangeLogin = function(){		
-		userLoginAuthentication.authenticate();
-	};
 
 	//Auto redirect if login is valid.
 	if(globalObject.getAccessToken() && location.hash.substring("Login") != -1){
